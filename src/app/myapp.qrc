@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Qml/Contents.ui.qml</file>
+        <file>Qml/MyApp.qml</file>
+    </qresource>
+</RCC>

@@ -1,20 +1,15 @@
-#include <QCoreApplication>
+#include <QGuiApplication>
 #include <QLoggingCategory>
-#include <myclass.h>
-
-Q_LOGGING_CATEGORY(LOG_MAIN, "Main", QtDebugMsg)
+#include <QQmlApplicationEngine>
 
 int main(int argc, char *argv[])
 {
-    qCDebug(LOG_MAIN) << "Main()";
+    QGuiApplication app(argc, argv);
 
-    QCoreApplication app(argc, argv);
+    QQmlApplicationEngine engine(qApp);
 
-    {
-        MyClass myclass;
-    }
+    engine.addImportPath(".");
+    engine.load( QUrl(QStringLiteral("qrc:/Qml/MyApp.qml")));
 
-    qCDebug(LOG_MAIN) << "~Main()";
-
-    return 0;//app.exec();
+    return app.exec();
 }
