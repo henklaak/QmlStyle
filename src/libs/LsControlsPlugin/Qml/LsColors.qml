@@ -10,9 +10,11 @@ QtObject {
     property color  highlightColor: "#ff40ffff"
     property double highlightWidth: 2
 
-    property color grooveColor:  "#80636687"
+    property color grooveColor:  "#80323343"
 
     property color controlColor: "#80636687"
 
-    property color textColor: "#e0000000"
+    property color textColor: "#a0ffffff"
+
+    property font normalFont: Qt.font({family: "Helvetica", pointSize: 14});
 }

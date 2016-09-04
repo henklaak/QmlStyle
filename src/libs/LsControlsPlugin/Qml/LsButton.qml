@@ -18,5 +18,13 @@ Button {
                 color: (control.pressed ? LsColors.highlightColor : LsColors.borderColor)
             }
         }
+        label: Text {
+            text: control.text
+            anchors.fill: parent
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            color: LsColors.textColor
+            font: LsColors.normalFont
+        }
     }
 }

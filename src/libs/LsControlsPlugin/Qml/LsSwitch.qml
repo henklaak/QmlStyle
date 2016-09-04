@@ -22,7 +22,8 @@ Switch {
             }
             Text {
                 text: control.checked ? lsSwitch.textOn : lsSwitch.textOff
-                color: control.checked  ? LsColors.highlightColor: LsColors.borderColor
+                font: LsColors.normalFont
+                color: control.checked  ? LsColors.highlightColor: LsColors.textColor
                 anchors.fill: parent
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
