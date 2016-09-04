@@ -1,19 +1,17 @@
 <RCC>
     <qresource prefix="/LsControls">
         <file>Images/backgroundtile.png</file>
-        <file>Images/button_on.png</file>
-        <file>Images/button_on2.png</file>
-        <file>Images/button.png</file>
-        <file>Qml/LsButton.ui.qml</file>
-        <file>Qml/LsApplicationWindow.ui.qml</file>
-        <file>Qml/LsCheckBox.ui.qml</file>
-        <file>Qml/LsComboBox.ui.qml</file>
-        <file>Qml/LsLabel.ui.qml</file>
-        <file>Qml/LsProgressBar.ui.qml</file>
-        <file>Qml/LsRadioButton.ui.qml</file>
-        <file>Qml/LsSlider.ui.qml</file>
-        <file>Qml/LsSwitch.ui.qml</file>
-        <file>Qml/LsText.ui.qml</file>
-        <file>Qml/LsTextField.ui.qml</file>
+        <file>Qml/LsApplicationWindow.qml</file>
+        <file>Qml/LsButton.qml</file>
+        <file>Qml/LsCheckBox.qml</file>
+        <file>Qml/LsComboBox.qml</file>
+        <file>Qml/LsLabel.qml</file>
+        <file>Qml/LsProgressBar.qml</file>
+        <file>Qml/LsRadioButton.qml</file>
+        <file>Qml/LsSlider.qml</file>
+        <file>Qml/LsSwitch.qml</file>
+        <file>Qml/LsText.qml</file>
+        <file>Qml/LsTextField.qml</file>
+        <file>Qml/LsColors.qml</file>
     </qresource>
 </RCC>

@@ -5,5 +5,5 @@ import QtQuick.Controls.Styles 1.4
 Text {
     font.pointSize: 12
     font.family: "Helvetica"
-    color: "#80FFFFFF"
+    color: LsColors.textColor
 }

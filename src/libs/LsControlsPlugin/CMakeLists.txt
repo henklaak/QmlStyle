@@ -1,17 +1,18 @@
 add_library(LsControlsPlugin SHARED
     lscontrolsplugin.cpp
     lscontrolsplugin.qrc
-    Qml/LsApplicationWindow.ui.qml
-    Qml/LsButton.ui.qml
-    Qml/LsCheckBox.ui.qml
-    Qml/LsComboBox.ui.qml
-    Qml/LsLabel.ui.qml
-    Qml/LsProgressBar.ui.qml
-    Qml/LsRadioButton.ui.qml
-    Qml/LsSlider.ui.qml
-    Qml/LsSwitch.ui.qml
-    Qml/LsText.ui.qml
-    Qml/LsTextField.ui.qml
+    Qml/LsApplicationWindow.qml
+    Qml/LsButton.qml
+    Qml/LsCheckBox.qml
+    Qml/LsColors.qml
+    Qml/LsComboBox.qml
+    Qml/LsLabel.qml
+    Qml/LsProgressBar.qml
+    Qml/LsRadioButton.qml
+    Qml/LsSlider.qml
+    Qml/LsSwitch.qml
+    Qml/LsText.qml
+    Qml/LsTextField.qml
     qmldir)
 
 target_include_directories(LsControlsPlugin
