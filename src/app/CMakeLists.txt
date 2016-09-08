@@ -12,5 +12,3 @@ target_link_libraries(MyApp
 install(
     TARGETS MyApp
     RUNTIME DESTINATION ${BINDIR})
-
-

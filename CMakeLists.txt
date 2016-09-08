@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(CMakeTemplate)
+project(QmlStyleLaaksoft)
 
 # Test
 enable_testing()
