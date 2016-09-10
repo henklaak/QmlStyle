@@ -10,7 +10,7 @@ class LsControls : public QObject
 
 public:
     explicit LsControls( const QString &a_name,
-                                 QObject *a_parent = nullptr );
+                         QObject *a_parent = nullptr );
     virtual ~LsControls();
 
     virtual void render() final;
@@ -20,22 +20,17 @@ public:
     virtual void initImages() final;
 
     virtual void renderOutline() final;
-    virtual void renderOutlineHighlight() final;
-    virtual void renderOutlineShadow() final;
-    virtual void renderOutlineOcclusion() final;
-
-    virtual void renderControl() final;
-    virtual void renderControlHighlight() final;
-    virtual void renderControlShadow() final;
+    virtual void renderControlNormal() final;
+    virtual void renderControlPressed() final;
 
     virtual void flattenImage();
     virtual void saveResult();
 
 
 protected:
-    QImage calcVertDerivative(const QImage &a_image, bool dir, const QColor &a_col );
-    QImage calcOmniDerivative(const QImage &a_image, const QColor &a_col );
-    QImage blurImage(const QImage &a_image, double radius);
+    QImage calcVertDerivative( const QImage &a_image, bool dir, const QColor &a_col );
+    QImage calcOmniDerivative( const QImage &a_image, const QColor &a_col );
+    QImage blurImage( const QImage &a_image, double radius );
 
     QString m_name;
 
@@ -48,9 +43,16 @@ protected:
     QImage m_imgOutlineShadow;
     QImage m_imgOutlineOcclusion;
 
-    QImage m_imgControl;
-    QImage m_imgControlHighlight;
-    QImage m_imgControlShadow;
+    QImage m_imgControlNormal;
+    QImage m_imgControlNormalHighlight;
+    QImage m_imgControlNormalShadow;
 
-    QImage m_imgFinal;
+    QImage m_imgControlPressed;
+    QImage m_imgControlPressedHighlight;
+    QImage m_imgControlPressedShadow;
+
+    QImage m_imgFinalEmpty;
+    QImage m_imgFinalNormal;
+    QImage m_imgFinalPressed;
+    QImage m_imgFinalDisabled;
 };

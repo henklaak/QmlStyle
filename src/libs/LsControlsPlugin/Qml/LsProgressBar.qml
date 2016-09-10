@@ -15,7 +15,11 @@ ProgressBar {
                 y: -32
                 width: parent.width + 64
                 height: parent.height + 64
-                source: "qrc:/LsControls/Images/ProgressBar.png"
+                source: ("qrc:/LsControls/Images/ProgressBar_%1_%2_%3.png")
+                .arg(enabled ? "enabled" : "disabled")
+                .arg("unpressed")
+                .arg("unchecked")
+
                 border.left: 64
                 border.right: 64
                 border.top: 64

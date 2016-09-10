@@ -32,6 +32,6 @@ Item {
     LsSwitch{ x: 702; y: 889; width: 135; height: 50; checked: true; }
 
     LsButton { x: 454; y: 1062; width: 214; height: 64; text: "Pressme2"; }
-    LsButton { x: 454; y: 1152; width: 214; height: 64; text: "Pressme"; checkable: true; }
+    LsButton { x: 454; y: 1152; width: 214; height: 64; text: "Pressme"; checkable: true; enabled: false; }
     LsButton { x: 454; y: 1241; width: 214; height: 64; text: "Pressme"; checkable: true; checked: true; }
 }

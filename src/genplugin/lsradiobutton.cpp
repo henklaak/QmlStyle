@@ -3,7 +3,7 @@
 #include <QLoggingCategory>
 #include <QPainter>
 
-Q_LOGGING_CATEGORY( LOG_LSRADIOBUTTON, "LsRadioButton", QtDebugMsg )
+Q_LOGGING_CATEGORY( LOG_LSRADIOBUTTON, "LsRadioButton", QtWarningMsg )
 
 
 /**************************************************************************************************/
@@ -24,7 +24,7 @@ void LsRadioButton::initFinalImage()
 {
     qCDebug( LOG_LSRADIOBUTTON ) << "initFinalImage()";
 
-    m_imgFinal = QImage( 32+64, 32+64, QImage::Format_ARGB32 );
+    m_imgFinalEmpty = QImage( 32 + 64, 32 + 64, QImage::Format_ARGB32 );
 }
 
 /**************************************************************************************************/
@@ -46,6 +46,4 @@ void LsRadioButton::initControl()
 
     m_controlPath2 = QPainterPath();
     m_controlPath2.addRoundedRect( QRectF( 37, 37, 22, 22 ), 11, 11 );
-
 }
-

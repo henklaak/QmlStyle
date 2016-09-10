@@ -3,7 +3,7 @@
 #include <QLoggingCategory>
 #include <QPainter>
 
-Q_LOGGING_CATEGORY( LOG_LSTEXTFIELD, "LsTextField", QtDebugMsg )
+Q_LOGGING_CATEGORY( LOG_LSTEXTFIELD, "LsTextField", QtWarningMsg )
 
 
 /**************************************************************************************************/
@@ -24,7 +24,7 @@ void LsTextField::initFinalImage()
 {
     qCDebug( LOG_LSTEXTFIELD ) << "initFinalImage()";
 
-    m_imgFinal = QImage( 214+64, 64+64, QImage::Format_ARGB32 );
+    m_imgFinalEmpty = QImage( 214 + 64, 64 + 64, QImage::Format_ARGB32 );
 }
 
 /**************************************************************************************************/
@@ -41,5 +41,4 @@ void LsTextField::initControl()
 {
     qCDebug( LOG_LSTEXTFIELD ) << "initControl()";
 }
-
 

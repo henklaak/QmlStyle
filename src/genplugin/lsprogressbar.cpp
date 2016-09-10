@@ -3,7 +3,7 @@
 #include <QLoggingCategory>
 #include <QPainter>
 
-Q_LOGGING_CATEGORY( LOG_LSPROGRESSBAR, "LsProgressBar", QtDebugMsg )
+Q_LOGGING_CATEGORY( LOG_LSPROGRESSBAR, "LsProgressBar", QtWarningMsg )
 
 
 /**************************************************************************************************/
@@ -24,7 +24,7 @@ void LsProgressBar::initFinalImage()
 {
     qCDebug( LOG_LSPROGRESSBAR ) << "initFinalImage()";
 
-    m_imgFinal = QImage( 200+64, 24+64, QImage::Format_ARGB32 );
+    m_imgFinalEmpty = QImage( 200 + 64, 24 + 64, QImage::Format_ARGB32 );
 }
 
 /**************************************************************************************************/
@@ -45,5 +45,5 @@ void LsProgressBar::initControl()
     m_controlPath.addRoundedRect( QRectF( 34, 34, 196, 20 ), 6, 6 );
 
     m_controlPath2 = QPainterPath();
-    m_controlPath2.addRoundedRect( QRectF( 37, 37, 190, 19 ), 3, 3 );}
-
+    m_controlPath2.addRoundedRect( QRectF( 37, 37, 190, 19 ), 3, 3 );
+}

@@ -13,7 +13,11 @@ Button {
                 y: -32
                 width: parent.width + 64
                 height: parent.height + 64
-                source: "qrc:/LsControls/Images/Button.png"
+                source: ("qrc:/LsControls/Images/Button_%1_%2_%3.png")
+                .arg(enabled ? "enabled" : "disabled")
+                .arg(pressed ? "pressed" : "unpressed")
+                .arg(checked ? "checked" : "unchecked")
+
                 border.left: 64
                 border.right: 64
                 border.top: 64
@@ -27,6 +31,7 @@ Button {
             verticalAlignment: Text.AlignVCenter
             color: LsColors.textColor
             font: LsColors.normalFont
+
         }
     }
 }

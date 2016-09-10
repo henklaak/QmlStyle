@@ -3,7 +3,7 @@
 #include <QLoggingCategory>
 #include <QPainter>
 
-Q_LOGGING_CATEGORY( LOG_LSSLIDER, "LsSlider", QtDebugMsg )
+Q_LOGGING_CATEGORY( LOG_LSSLIDER, "LsSlider", QtWarningMsg )
 
 
 /**************************************************************************************************/
@@ -24,7 +24,7 @@ void LsSlider::initFinalImage()
 {
     qCDebug( LOG_LSSLIDER ) << "initFinalImage()";
 
-    m_imgFinal = QImage( 200+64, 32+64, QImage::Format_ARGB32 );
+    m_imgFinalEmpty = QImage( 200 + 64, 32 + 64, QImage::Format_ARGB32 );
 }
 
 /**************************************************************************************************/
@@ -43,5 +43,7 @@ void LsSlider::initControl()
 
     m_controlPath = QPainterPath();
     m_controlPath.addRoundedRect( QRectF( 34, 34, 28, 28 ), 14, 14 );
-}
 
+    m_controlPath2 = QPainterPath();
+    m_controlPath2.addRoundedRect( QRectF( 37, 37, 22, 22 ), 11, 11 );
+}

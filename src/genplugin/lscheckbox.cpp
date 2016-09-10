@@ -3,7 +3,7 @@
 #include <QLoggingCategory>
 #include <QPainter>
 
-Q_LOGGING_CATEGORY( LOG_LSCHECKBOX, "LsCheckBox", QtDebugMsg )
+Q_LOGGING_CATEGORY( LOG_LSCHECKBOX, "LsCheckBox", QtWarningMsg )
 
 
 /**************************************************************************************************/
@@ -24,7 +24,7 @@ void LsCheckBox::initFinalImage()
 {
     qCDebug( LOG_LSCHECKBOX ) << "initFinalImage()";
 
-    m_imgFinal = QImage( 32+64, 32+64, QImage::Format_ARGB32 );
+    m_imgFinalEmpty = QImage( 32 + 64, 32 + 64, QImage::Format_ARGB32 );
 }
 
 /**************************************************************************************************/
@@ -47,5 +47,4 @@ void LsCheckBox::initControl()
     m_controlPath2 = QPainterPath();
     m_controlPath2.addRoundedRect( QRectF( 37, 37, 22, 22 ), 4, 4 );
 }
-
 

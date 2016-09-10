@@ -2,8 +2,9 @@
 #include <QDebug>
 #include <QLoggingCategory>
 #include <QPainter>
+#include <QDir>
 
-Q_LOGGING_CATEGORY( LOG_LSCONTROLS, "LsControls", QtDebugMsg )
+Q_LOGGING_CATEGORY( LOG_LSCONTROLS, "LsControls", QtInfoMsg )
 
 
 /**************************************************************************************************/
@@ -11,7 +12,7 @@ LsControls::LsControls( const QString &a_name, QObject *a_parent )
     : QObject( a_parent )
     , m_name( a_name )
 {
-    qCDebug( LOG_LSCONTROLS ) << "LsControls()";
+    qCDebug( LOG_LSCONTROLS ) << "LsControls()" << a_name;
 }
 
 /**************************************************************************************************/
@@ -23,20 +24,15 @@ LsControls::~LsControls()
 /**************************************************************************************************/
 void LsControls::render()
 {
-    qCDebug( LOG_LSCONTROLS ) << "render()";
+    qCInfo( LOG_LSCONTROLS ) << "render()" << m_name;
 
     initImages();
-
     initOutline();
-    renderOutline();
-    renderOutlineHighlight();
-    renderOutlineShadow();
-    renderOutlineOcclusion();
-
     initControl();
-    renderControl();
-    renderControlHighlight();
-    renderControlShadow();
+
+    renderOutline();
+    renderControlNormal();
+    renderControlPressed();
 
     flattenImage();
     saveResult();
@@ -48,18 +44,24 @@ void LsControls::initImages()
     qCDebug( LOG_LSCONTROLS ) << "initImages()";
 
     initFinalImage();
-    m_imgFinal.fill( 0x00000000);
+    m_imgFinalEmpty.fill( 0x00000000 );
 
-    m_imgOutline       = m_imgFinal;
-    m_imgOutlineHighlight = m_imgFinal;
-    m_imgOutlineShadow    = m_imgFinal;
-    m_imgOutlineOcclusion     = m_imgFinal;
+    m_imgOutline          = m_imgFinalEmpty;
+    m_imgOutlineHighlight = m_imgFinalEmpty;
+    m_imgOutlineShadow    = m_imgFinalEmpty;
+    m_imgOutlineOcclusion = m_imgFinalEmpty;
 
-    m_imgControl = m_imgFinal;
-    m_imgControlHighlight = m_imgFinal;
-    m_imgControlShadow= m_imgFinal;
+    m_imgFinalNormal      = m_imgFinalEmpty;
+    m_imgControlNormal          = m_imgFinalEmpty;
+    m_imgControlNormalHighlight = m_imgFinalEmpty;
+    m_imgControlNormalShadow    = m_imgFinalEmpty;
 
-//    m_imgFinal.fill( 0xff2f3356 );
+    m_imgFinalPressed            = m_imgFinalEmpty;
+    m_imgControlPressed          = m_imgFinalEmpty;
+    m_imgControlPressedHighlight = m_imgFinalEmpty;
+    m_imgControlPressedShadow    = m_imgFinalEmpty;
+
+    m_imgFinalDisabled           = m_imgFinalEmpty;
 }
 
 
@@ -68,19 +70,15 @@ void LsControls::renderOutline()
 {
     qCDebug( LOG_LSCONTROLS ) << "renderOutline()";
 
-    // Prepare empty transparent image
-    QPainter painter( &m_imgOutline );
-    painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
+    {
+        // Prepare empty transparent image
+        QPainter painter( &m_imgOutline );
+        painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
 
-    // Darken hole
-    painter.setPen( Qt::NoPen );
-    painter.fillPath( m_outlinePath, QBrush( QColor( 0, 0, 0, 32 ) ) );
-}
-
-/**************************************************************************************************/
-void LsControls::renderOutlineHighlight()
-{
-    qCDebug( LOG_LSCONTROLS ) << "renderEdgeHighlight()";
+        // Darken hole
+        painter.setPen( Qt::NoPen );
+        painter.fillPath( m_outlinePath, QBrush( QColor( 0, 0, 0, 32 ) ) );
+    }
     {
         m_imgOutlineHighlight.fill( 0xffffffff );
 
@@ -89,14 +87,10 @@ void LsControls::renderOutlineHighlight()
         painter.fillPath( m_outlinePath, QBrush( QColor( 0, 0, 0, 255 ) ) );
     }
 
-    m_imgOutlineHighlight = calcVertDerivative( m_imgOutlineHighlight, false, QColor( 255, 255, 255, 50) );
+    m_imgOutlineHighlight = calcVertDerivative( m_imgOutlineHighlight, false, QColor( 255, 255, 255,
+                            50 ) );
     m_imgOutlineHighlight = blurImage( m_imgOutlineHighlight, 4 );
-}
 
-/**************************************************************************************************/
-void LsControls::renderOutlineShadow()
-{
-    qCDebug( LOG_LSCONTROLS ) << "renderEdgeShadow()";
     {
         m_imgOutlineShadow.fill( 0xffffffff );
 
@@ -105,14 +99,9 @@ void LsControls::renderOutlineShadow()
         painter.fillPath( m_outlinePath, QBrush( QColor( 0, 0, 0, 255 ) ) );
     }
 
-    m_imgOutlineShadow = calcVertDerivative( m_imgOutlineShadow, true, QColor( 0, 0, 0, 192) );
+    m_imgOutlineShadow = calcVertDerivative( m_imgOutlineShadow, true, QColor( 0, 0, 0, 192 ) );
     m_imgOutlineShadow = blurImage( m_imgOutlineShadow, 8 );
-}
 
-/**************************************************************************************************/
-void LsControls::renderOutlineOcclusion()
-{
-    qCDebug( LOG_LSCONTROLS ) << "renderOcclusion()";
     {
         m_imgOutlineOcclusion.fill( 0xffffffff );
 
@@ -121,125 +110,203 @@ void LsControls::renderOutlineOcclusion()
         painter.fillPath( m_outlinePath, QBrush( QColor( 0, 0, 0, 255 ) ) );
     }
 
-    m_imgOutlineOcclusion = calcOmniDerivative( m_imgOutlineOcclusion, QColor( 0, 0, 0, 192) );
+    m_imgOutlineOcclusion = calcOmniDerivative( m_imgOutlineOcclusion, QColor( 0, 0, 0, 192 ) );
     m_imgOutlineOcclusion = blurImage( m_imgOutlineOcclusion, 8 );
 }
 
 /**************************************************************************************************/
-void LsControls::renderControl()
+void LsControls::renderControlNormal()
 {
     qCDebug( LOG_LSCONTROLS ) << "renderControl()";
 
-    // Prepare empty transparent image
-    QPainter painter( &m_imgControl );
-    painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
-
-    QRectF rect = m_controlPath.toFillPolygon().boundingRect();
-
-    QLinearGradient gradient(rect.topLeft(), rect.bottomLeft());
-    gradient.setColorAt(0, QColor(160,160,220,192));
-    gradient.setColorAt(1, QColor(160,160,220,128));
-
-    painter.setPen( Qt::NoPen );
-    painter.fillPath( m_controlPath, gradient);
-}
-
-/**************************************************************************************************/
-void LsControls::renderControlHighlight()
-{
-    qCDebug( LOG_LSCONTROLS ) << "renderControlHighlight()";
     {
-        m_imgControlHighlight.fill( 0xffffffff );
+        // Prepare empty transparent image
+        QPainter painter( &m_imgControlNormal );
+        painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
 
-        QPainter painter( &m_imgControlHighlight );
+        painter.setPen( Qt::NoPen );
+        painter.fillPath( m_controlPath, QColor( 253, 204, 102, 255 ) );
+    }
+
+    {
+        m_imgControlNormalHighlight.fill( 0xffffffff );
+
+        QPainter painter( &m_imgControlNormalHighlight );
         painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
         painter.fillPath( m_controlPath2, QBrush( QColor( 0, 0, 0, 255 ) ) );
     }
 
-    m_imgControlHighlight = calcVertDerivative( m_imgControlHighlight, true, QColor( 255, 255, 255, 255) );
-    m_imgControlHighlight = blurImage( m_imgControlHighlight, 9);
-}
-
-/**************************************************************************************************/
-void LsControls::renderControlShadow()
-{
-    qCDebug( LOG_LSCONTROLS ) << "renderControlHighlight()";
+    m_imgControlNormalHighlight = calcVertDerivative( m_imgControlNormalHighlight, true, QColor( 255,
+                                  255, 255, 255 ) );
+    m_imgControlNormalHighlight = blurImage( m_imgControlNormalHighlight, 9 );
     {
-        m_imgControlShadow.fill( 0xffffffff );
+        m_imgControlNormalShadow.fill( 0xffffffff );
 
-        QPainter painter( &m_imgControlShadow );
+        QPainter painter( &m_imgControlNormalShadow );
         painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
         painter.fillPath( m_controlPath2, QBrush( QColor( 0, 0, 0, 255 ) ) );
     }
 
-    m_imgControlShadow = calcVertDerivative( m_imgControlShadow, false, QColor( 0,0,0, 255) );
-    m_imgControlShadow = blurImage( m_imgControlShadow, 12 );
+    m_imgControlNormalShadow = calcVertDerivative( m_imgControlNormalShadow, false, QColor( 0, 0, 0,
+                               64 ) );
+    m_imgControlNormalShadow = blurImage( m_imgControlNormalShadow, 12 );
+}
+
+/**************************************************************************************************/
+void LsControls::renderControlPressed()
+{
+    qCDebug( LOG_LSCONTROLS ) << "renderControlPressed()";
+
+    {
+        // Prepare empty transparent image
+        QPainter painter( &m_imgControlPressed );
+        painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
+
+        painter.setPen( Qt::NoPen );
+        painter.fillPath( m_controlPath, QColor( 253, 204, 102, 224 ) );
+    }
+
+    {
+        m_imgControlPressedHighlight.fill( 0xffffffff );
+
+        QPainter painter( &m_imgControlPressedHighlight );
+        painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
+        painter.fillPath( m_controlPath2, QBrush( QColor( 0, 0, 0, 255 ) ) );
+    }
+
+    m_imgControlPressedHighlight = calcVertDerivative( m_imgControlPressedHighlight, true, QColor( 255,
+                                   255, 255, 64 ) );
+    m_imgControlPressedHighlight = blurImage( m_imgControlPressedHighlight, 5 );
+
+    {
+        m_imgControlPressedShadow.fill( 0xffffffff );
+
+        QPainter painter( &m_imgControlPressedShadow );
+        painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
+        painter.fillPath( m_controlPath2, QBrush( QColor( 0, 0, 0, 255 ) ) );
+    }
+
+    m_imgControlPressedShadow = calcVertDerivative( m_imgControlPressedShadow, false, QColor( 0, 0, 0,
+                                32 ) );
+    m_imgControlPressedShadow = blurImage( m_imgControlPressedShadow, 5 );
 }
 
 /**************************************************************************************************/
 void LsControls::flattenImage()
 {
     qCDebug( LOG_LSCONTROLS ) << "flattenImage()";
+    QDir base( "/home/henklaak/Projects/QmlStyleLaaksoft/src/libs/LsControlsPlugin/Images" );
 
     // Merge edge shadow
+    if( 1 )
     {
-        QPainter painter( &m_imgFinal );
+        QPainter painter( &m_imgFinalEmpty );
         painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
         painter.setClipPath( m_outlinePath );
         painter.drawImage( m_imgOutline.rect(), m_imgOutline, m_imgOutline.rect() );
     }
 
     // Merge edge shadow
+    if( 1 )
     {
-        QPainter painter( &m_imgFinal );
+        QPainter painter( &m_imgFinalEmpty );
         painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
         painter.setClipPath( m_outlinePath );
         painter.drawImage( m_imgOutlineShadow.rect(), m_imgOutlineShadow, m_imgOutlineShadow.rect() );
     }
 
     // Merge edge highlight
+    if( 1 )
     {
-        QPainter painter( &m_imgFinal );
+        QPainter painter( &m_imgFinalEmpty );
         painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
 
         QPainterPath invcontour, invcontour2;
-        invcontour.addRect(m_imgOutlineHighlight.rect());
-        invcontour2 = invcontour.subtracted(m_outlinePath);
+        invcontour.addRect( m_imgOutlineHighlight.rect() );
+        invcontour2 = invcontour.subtracted( m_outlinePath );
 
         painter.setClipPath( invcontour2 );
-        painter.drawImage( m_imgOutlineHighlight.rect(), m_imgOutlineHighlight, m_imgOutlineHighlight.rect() );
+        painter.drawImage( m_imgOutlineHighlight.rect(), m_imgOutlineHighlight,
+                           m_imgOutlineHighlight.rect() );
     }
 
     // Merge occlusion
+    if( 1 )
     {
-        QPainter painter( &m_imgFinal );
+        QPainter painter( &m_imgFinalEmpty );
         painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
         painter.setClipPath( m_outlinePath );
-        painter.drawImage( m_imgOutlineOcclusion.rect(), m_imgOutlineOcclusion, m_imgOutlineOcclusion.rect() );
+        painter.drawImage( m_imgOutlineOcclusion.rect(), m_imgOutlineOcclusion,
+                           m_imgOutlineOcclusion.rect() );
     }
 
+    //////////////////////////////////////
+
+    m_imgFinalNormal = m_imgFinalEmpty;
+
     // Merge control
+    if( 1 )
     {
-        QPainter painter( &m_imgFinal );
+        QPainter painter( &m_imgFinalNormal );
         painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
-        painter.drawImage( m_imgControl.rect(), m_imgControl, m_imgControl.rect() );
+        painter.drawImage( m_imgControlNormal.rect(), m_imgControlNormal, m_imgControlNormal.rect() );
     }
 
     // Merge control highlight
-    if (1) {
-        QPainter painter( &m_imgFinal );
+    if( 1 )
+    {
+        QPainter painter( &m_imgFinalNormal );
         painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
         painter.setClipPath( m_controlPath );
-        painter.drawImage( m_imgControlHighlight.rect(), m_imgControlHighlight, m_imgControlHighlight.rect() );
+        painter.drawImage( m_imgControlNormalHighlight.rect(), m_imgControlNormalHighlight,
+                           m_imgControlNormalHighlight.rect() );
     }
 
     // Merge control shadow
-    if (0) {
-        QPainter painter( &m_imgFinal );
+    if( 1 )
+    {
+        QPainter painter( &m_imgFinalNormal );
         painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
         painter.setClipPath( m_controlPath );
-        painter.drawImage( m_imgControlShadow.rect(), m_imgControlShadow, m_imgControlShadow.rect() );
+        painter.drawImage( m_imgControlNormalShadow.rect(), m_imgControlNormalShadow,
+                           m_imgControlNormalShadow.rect() );
     }
+
+    //////////////////////////////////////
+
+    m_imgFinalPressed = m_imgFinalEmpty;
+
+    // Merge control
+    if( 1 )
+    {
+        QPainter painter( &m_imgFinalPressed );
+        painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
+        painter.drawImage( m_imgControlPressed.rect(), m_imgControlPressed, m_imgControlPressed.rect() );
+    }
+
+    // Merge control highlight
+    if( 1 )
+    {
+        QPainter painter( &m_imgFinalPressed );
+        painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
+        painter.setClipPath( m_controlPath );
+        painter.drawImage( m_imgControlPressedHighlight.rect(), m_imgControlPressedHighlight,
+                           m_imgControlPressedHighlight.rect() );
+    }
+
+    // Merge control shadow
+    if( 1 )
+    {
+        QPainter painter( &m_imgFinalPressed );
+        painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
+        painter.setClipPath( m_controlPath );
+        painter.drawImage( m_imgControlPressedShadow.rect(), m_imgControlPressedShadow,
+                           m_imgControlPressedShadow.rect() );
+    }
+
+    //////////////////////////////////////
+
+    m_imgFinalDisabled = m_imgFinalEmpty;
 
 }
 
@@ -248,11 +315,18 @@ void LsControls::saveResult()
 {
     qCDebug( LOG_LSCONTROLS ) << "saveResult()";
 
-//    m_imgOutline.save( m_name + "_outline.png", "png" );
-//    m_imgOutlineHighlight.save( m_name + "_edge_high.png", "png" );
-//    m_imgOutlineShadow.save( m_name + "_edge_shadow.png", "png" );
-//    m_imgOutlineOcclusion.save( m_name + "_occlusion.png", "png" );
-    m_imgFinal.save( m_name + ".png", "png" );
+    QDir base( "/home/henklaak/Projects/QmlStyleLaaksoft/src/libs/LsControlsPlugin/Images" );
+    m_imgFinalNormal.save( base.absoluteFilePath( m_name + "_enabled_unpressed_checked.png" ) );
+    m_imgFinalNormal.save( base.absoluteFilePath( m_name + "_enabled_unpressed_unchecked.png" ) );
+
+    m_imgFinalPressed.save( base.absoluteFilePath( m_name + "_enabled_pressed_checked.png" ) );
+    m_imgFinalPressed.save( base.absoluteFilePath( m_name + "_enabled_pressed_unchecked.png" ) );
+
+    m_imgFinalDisabled.save( base.absoluteFilePath( m_name + "_disabled_unpressed_checked.png" ) );
+    m_imgFinalDisabled.save( base.absoluteFilePath( m_name + "_disabled_unpressed_unchecked.png" ) );
+
+    m_imgFinalDisabled.save( base.absoluteFilePath( m_name + "_disabled_pressed_checked.png" ) );
+    m_imgFinalDisabled.save( base.absoluteFilePath( m_name + "_disabled_pressed_unchecked.png" ) );
 }
 
 /**************************************************************************************************/
@@ -303,16 +377,16 @@ QImage LsControls::calcOmniDerivative( const QImage &a_image, const QColor &a_co
     int w = imagecopy.width();
     int h = imagecopy.height();
 
-    for( int x = 1; x < w-1; x++ )
+    for( int x = 1; x < w - 1; x++ )
     {
         for( int y = 1; y < h - 1; y++ )
         {
             QRgb *pixelt = ( QRgb * )a_image.scanLine( y - 1 ) + x;
             QRgb *pixelb = ( QRgb * )a_image.scanLine( y + 1 ) + x;
-            QRgb *pixell = ( QRgb * )a_image.scanLine( y     ) + x-1;
-            QRgb *pixelr = ( QRgb * )a_image.scanLine( y     ) + x+1;
-            QRgb *pixelc = ( QRgb * )a_image.scanLine( y     ) + x;
-            QRgb *pixeln = ( QRgb * )imagecopy.scanLine( y     ) + x;
+            QRgb *pixell = ( QRgb * )a_image.scanLine( y ) + x - 1;
+            QRgb *pixelr = ( QRgb * )a_image.scanLine( y ) + x + 1;
+            QRgb *pixelc = ( QRgb * )a_image.scanLine( y ) + x;
+            QRgb *pixeln = ( QRgb * )imagecopy.scanLine( y ) + x;
 
             QColor colt( *pixelt );
             QColor colb( *pixelb );
@@ -322,9 +396,9 @@ QImage LsControls::calcOmniDerivative( const QImage &a_image, const QColor &a_co
 
             QColor col = a_col;
 
-            qreal diff = fabs(colt.redF() + colb.redF() + coll.redF() + colr.redF() - 4 * colc.redF())/3;
+            qreal diff = fabs( colt.redF() + colb.redF() + coll.redF() + colr.redF() - 4 * colc.redF() ) / 3;
 
-            col.setAlphaF( a_col.alphaF() * qMin(1.0, qMax( 0.0, diff ) ));
+            col.setAlphaF( a_col.alphaF() * qMin( 1.0, qMax( 0.0, diff ) ) );
 
             *pixeln = col.rgba();
         }

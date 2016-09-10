@@ -14,7 +14,7 @@ QtObject {
 
     property color controlColor: "#80636687"
 
-    property color textColor: "#a0ffffff"
+    property color textColor: "#a0000000"
 
     property font normalFont: Qt.font({family: "Helvetica", pointSize: 14});
 }

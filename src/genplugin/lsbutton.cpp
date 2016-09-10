@@ -3,7 +3,7 @@
 #include <QLoggingCategory>
 #include <QPainter>
 
-Q_LOGGING_CATEGORY( LOG_LSBUTTON, "LsButton", QtDebugMsg )
+Q_LOGGING_CATEGORY( LOG_LSBUTTON, "LsButton", QtWarningMsg )
 
 
 /**************************************************************************************************/
@@ -24,7 +24,7 @@ void LsButton::initFinalImage()
 {
     qCDebug( LOG_LSBUTTON ) << "initFinalImage()";
 
-    m_imgFinal = QImage( 214+64, 64+64, QImage::Format_ARGB32 );
+    m_imgFinalEmpty = QImage( 214 + 64, 64 + 64, QImage::Format_ARGB32 );
 }
 
 /**************************************************************************************************/
@@ -46,5 +46,3 @@ void LsButton::initControl()
     m_controlPath2 = QPainterPath();
     m_controlPath2.addRoundedRect( QRectF( 37, 37, 204, 56 ), 27, 27 );
 }
-
-

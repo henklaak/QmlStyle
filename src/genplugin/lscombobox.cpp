@@ -3,7 +3,7 @@
 #include <QLoggingCategory>
 #include <QPainter>
 
-Q_LOGGING_CATEGORY( LOG_LSCOMBOBOX, "LsComboBox", QtDebugMsg )
+Q_LOGGING_CATEGORY( LOG_LSCOMBOBOX, "LsComboBox", QtWarningMsg )
 
 
 /**************************************************************************************************/
@@ -24,7 +24,7 @@ void LsComboBox::initFinalImage()
 {
     qCDebug( LOG_LSCOMBOBOX ) << "initFinalImage()";
 
-    m_imgFinal = QImage( 214+64, 64+64, QImage::Format_ARGB32 );
+    m_imgFinalEmpty = QImage( 214 + 64, 64 + 64, QImage::Format_ARGB32 );
 }
 
 /**************************************************************************************************/
@@ -41,5 +41,4 @@ void LsComboBox::initControl()
 {
     qCDebug( LOG_LSCOMBOBOX ) << "initControl()";
 }
-
 
