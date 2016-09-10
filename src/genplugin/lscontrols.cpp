@@ -89,7 +89,7 @@ void LsControls::renderOutlineHighlight()
         painter.fillPath( m_outlinePath, QBrush( QColor( 0, 0, 0, 255 ) ) );
     }
 
-    m_imgOutlineHighlight = calcVertDerivative( m_imgOutlineHighlight, false, QColor( 255, 255, 255, 64) );
+    m_imgOutlineHighlight = calcVertDerivative( m_imgOutlineHighlight, false, QColor( 255, 255, 255, 50) );
     m_imgOutlineHighlight = blurImage( m_imgOutlineHighlight, 4 );
 }
 
@@ -138,7 +138,7 @@ void LsControls::renderControl()
 
     QLinearGradient gradient(rect.topLeft(), rect.bottomLeft());
     gradient.setColorAt(0, QColor(160,160,220,192));
-    gradient.setColorAt(1, QColor(120,120,200,128));
+    gradient.setColorAt(1, QColor(160,160,220,128));
 
     painter.setPen( Qt::NoPen );
     painter.fillPath( m_controlPath, gradient);
@@ -234,7 +234,7 @@ void LsControls::flattenImage()
     }
 
     // Merge control shadow
-    if (1) {
+    if (0) {
         QPainter painter( &m_imgFinal );
         painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
         painter.setClipPath( m_controlPath );
