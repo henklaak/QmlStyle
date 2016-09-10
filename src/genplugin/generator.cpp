@@ -1,10 +1,26 @@
-#include <lscontrolsrenderer.h>
+#include <lsbutton.h>
+#include <lscheckbox.h>
+#include <lsradiobutton.h>
+#include <lsprogressbar.h>
 
-int main(int a_argc, char *a_argv[])
+int main( int a_argc, char *a_argv[] )
 {
-    LsControlsRenderer render;
+    {
+        LsButton renderer;
+        renderer.render();
+    }
+    {
+        LsCheckBox renderer;
+        renderer.render();
+    }
 
-    render.renderAll();
-
+    {
+        LsRadioButton renderer;
+        renderer.render();
+    }
+    {
+        LsProgressBar renderer;
+        renderer.render();
+    }
     return 0;
 }
