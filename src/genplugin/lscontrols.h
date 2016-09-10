@@ -25,6 +25,8 @@ public:
     virtual void renderOutlineOcclusion() final;
 
     virtual void renderControl() final;
+    virtual void renderControlHighlight() final;
+    virtual void renderControlShadow() final;
 
     virtual void flattenImage();
     virtual void saveResult();
@@ -39,6 +41,7 @@ protected:
 
     QPainterPath m_outlinePath;
     QPainterPath m_controlPath;
+    QPainterPath m_controlPath2;
 
     QImage m_imgOutline;
     QImage m_imgOutlineHighlight;
@@ -46,6 +49,8 @@ protected:
     QImage m_imgOutlineOcclusion;
 
     QImage m_imgControl;
+    QImage m_imgControlHighlight;
+    QImage m_imgControlShadow;
 
     QImage m_imgFinal;
 };

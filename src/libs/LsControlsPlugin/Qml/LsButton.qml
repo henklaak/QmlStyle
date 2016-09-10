@@ -6,6 +6,8 @@ import LsControls 1.0
 Button {
     style: ButtonStyle {
         background: Item {
+            width: control.width
+            height: control.height
             BorderImage {
                 x: -32
                 y: -32

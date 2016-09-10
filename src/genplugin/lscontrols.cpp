@@ -35,6 +35,8 @@ void LsControls::render()
 
     initControl();
     renderControl();
+    renderControlHighlight();
+    renderControlShadow();
 
     flattenImage();
     saveResult();
@@ -52,9 +54,12 @@ void LsControls::initImages()
     m_imgOutlineHighlight = m_imgFinal;
     m_imgOutlineShadow    = m_imgFinal;
     m_imgOutlineOcclusion     = m_imgFinal;
-    m_imgControl = m_imgFinal;
 
-    //m_imgFinal.fill( 0xff3d4264 );
+    m_imgControl = m_imgFinal;
+    m_imgControlHighlight = m_imgFinal;
+    m_imgControlShadow= m_imgFinal;
+
+//    m_imgFinal.fill( 0xff2f3356 );
 }
 
 
@@ -129,9 +134,46 @@ void LsControls::renderControl()
     QPainter painter( &m_imgControl );
     painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
 
-    // Lighten hole
+    QRectF rect = m_controlPath.toFillPolygon().boundingRect();
+
+    QLinearGradient gradient(rect.topLeft(), rect.bottomLeft());
+    gradient.setColorAt(0, QColor(160,160,220,192));
+    gradient.setColorAt(1, QColor(120,120,200,128));
+
     painter.setPen( Qt::NoPen );
-    painter.fillPath( m_controlPath, QBrush( QColor( 255, 255, 255, 32 ) ) );
+    painter.fillPath( m_controlPath, gradient);
+}
+
+/**************************************************************************************************/
+void LsControls::renderControlHighlight()
+{
+    qCDebug( LOG_LSCONTROLS ) << "renderControlHighlight()";
+    {
+        m_imgControlHighlight.fill( 0xffffffff );
+
+        QPainter painter( &m_imgControlHighlight );
+        painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
+        painter.fillPath( m_controlPath2, QBrush( QColor( 0, 0, 0, 255 ) ) );
+    }
+
+    m_imgControlHighlight = calcVertDerivative( m_imgControlHighlight, true, QColor( 255, 255, 255, 255) );
+    m_imgControlHighlight = blurImage( m_imgControlHighlight, 9);
+}
+
+/**************************************************************************************************/
+void LsControls::renderControlShadow()
+{
+    qCDebug( LOG_LSCONTROLS ) << "renderControlHighlight()";
+    {
+        m_imgControlShadow.fill( 0xffffffff );
+
+        QPainter painter( &m_imgControlShadow );
+        painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
+        painter.fillPath( m_controlPath2, QBrush( QColor( 0, 0, 0, 255 ) ) );
+    }
+
+    m_imgControlShadow = calcVertDerivative( m_imgControlShadow, false, QColor( 0,0,0, 255) );
+    m_imgControlShadow = blurImage( m_imgControlShadow, 12 );
 }
 
 /**************************************************************************************************/
@@ -183,7 +225,22 @@ void LsControls::flattenImage()
         painter.drawImage( m_imgControl.rect(), m_imgControl, m_imgControl.rect() );
     }
 
-    //m_imgResult = m_imgOutline;
+    // Merge control highlight
+    if (1) {
+        QPainter painter( &m_imgFinal );
+        painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
+        painter.setClipPath( m_controlPath );
+        painter.drawImage( m_imgControlHighlight.rect(), m_imgControlHighlight, m_imgControlHighlight.rect() );
+    }
+
+    // Merge control shadow
+    if (1) {
+        QPainter painter( &m_imgFinal );
+        painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
+        painter.setClipPath( m_controlPath );
+        painter.drawImage( m_imgControlShadow.rect(), m_imgControlShadow, m_imgControlShadow.rect() );
+    }
+
 }
 
 /**************************************************************************************************/

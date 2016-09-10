@@ -5,14 +5,19 @@ import LsControls 1.0
 
 TextField {
     style: TextFieldStyle {
-        background: Rectangle {
-            implicitWidth: control.width
-            implicitHeight: control.height
-            radius: 5
-            color: LsColors.grooveColor
-            border {
-                width: LsColors.borderWidth
-                color: LsColors.borderColor
+        background: Item {
+            width: control.width
+            height: control.height
+            BorderImage {
+                x: -32
+                y: -32
+                width: parent.width + 64
+                height: parent.height + 64
+                source: "qrc:/LsControls/Images/TextField.png"
+                border.left: 64
+                border.right: 64
+                border.top: 64
+                border.bottom: 64
             }
         }
         textColor: LsColors.textColor

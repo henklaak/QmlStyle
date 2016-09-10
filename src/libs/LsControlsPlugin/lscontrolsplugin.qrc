@@ -18,5 +18,7 @@
         <file>Images/ProgressBar.png</file>
         <file>Images/RadioButton.png</file>
         <file>Images/Slider.png</file>
+        <file>Images/TextField.png</file>
+        <file>Images/ComboBox.png</file>
     </qresource>
 </RCC>

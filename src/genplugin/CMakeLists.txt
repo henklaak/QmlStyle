@@ -1,11 +1,13 @@
 add_executable(Generator
     generator.cpp
+    lscombobox.cpp
     lscontrols.cpp
     lsbutton.cpp
     lscheckbox.cpp
     lsprogressbar.cpp
     lsradiobutton.cpp
     lsslider.cpp
+    lstextfield.cpp
     )
 
 target_link_libraries(Generator

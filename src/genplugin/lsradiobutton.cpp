@@ -40,5 +40,12 @@ void LsRadioButton::initOutline()
 void LsRadioButton::initControl()
 {
     qCDebug( LOG_LSRADIOBUTTON ) << "initControl()";
+
+    m_controlPath = QPainterPath();
+    m_controlPath.addRoundedRect( QRectF( 34, 34, 28, 28 ), 14, 14 );
+
+    m_controlPath2 = QPainterPath();
+    m_controlPath2.addRoundedRect( QRectF( 37, 37, 22, 22 ), 11, 11 );
+
 }
 

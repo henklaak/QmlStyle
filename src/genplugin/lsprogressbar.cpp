@@ -40,5 +40,10 @@ void LsProgressBar::initOutline()
 void LsProgressBar::initControl()
 {
     qCDebug( LOG_LSPROGRESSBAR ) << "initControl()";
-}
+
+    m_controlPath = QPainterPath();
+    m_controlPath.addRoundedRect( QRectF( 34, 34, 196, 20 ), 6, 6 );
+
+    m_controlPath2 = QPainterPath();
+    m_controlPath2.addRoundedRect( QRectF( 37, 37, 190, 19 ), 3, 3 );}
 

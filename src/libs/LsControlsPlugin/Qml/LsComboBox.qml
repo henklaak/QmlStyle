@@ -6,15 +6,19 @@ import LsControls 1.0
 ComboBox {
 
     style: ComboBoxStyle {
-        background: Rectangle {
-            radius: 5
+        background: Item {
             width: control.width
             height: control.height
-
-            color: LsColors.grooveColor
-            border {
-                width: (control.pressed ? LsColors.highlightWidth : LsColors.borderWidth)
-                color: (control.pressed ? LsColors.highlightColor : LsColors.borderColor)
+            BorderImage {
+                x: -32
+                y: -32
+                width: parent.width + 64
+                height: parent.height + 64
+                source: "qrc:/LsControls/Images/ComboBox.png"
+                border.left: 64
+                border.right: 64
+                border.top: 64
+                border.bottom: 64
             }
         }
 

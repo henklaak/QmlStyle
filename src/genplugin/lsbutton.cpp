@@ -40,6 +40,11 @@ void LsButton::initOutline()
 void LsButton::initControl()
 {
     qCDebug( LOG_LSBUTTON ) << "initControl()";
+    m_controlPath = QPainterPath();
+    m_controlPath.addRoundedRect( QRectF( 34, 34, 210, 60 ), 30, 30 );
+
+    m_controlPath2 = QPainterPath();
+    m_controlPath2.addRoundedRect( QRectF( 37, 37, 204, 56 ), 27, 27 );
 }
 
 
