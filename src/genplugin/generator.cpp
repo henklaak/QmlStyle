@@ -2,6 +2,7 @@
 #include <lscheckbox.h>
 #include <lsradiobutton.h>
 #include <lsprogressbar.h>
+#include <lsslider.h>
 
 int main( int a_argc, char *a_argv[] )
 {
@@ -20,6 +21,10 @@ int main( int a_argc, char *a_argv[] )
     }
     {
         LsProgressBar renderer;
+        renderer.render();
+    }
+    {
+        LsSlider renderer;
         renderer.render();
     }
     return 0;

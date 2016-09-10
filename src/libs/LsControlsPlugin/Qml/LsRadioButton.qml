@@ -4,20 +4,21 @@ import QtQuick.Controls.Styles 1.4
 import LsControls 1.0
 
 RadioButton {
-    width: 30
-    height: 30
+    width: 32
+    height: 32
 
     style: RadioButtonStyle {
-        background: Rectangle {
-            radius: height/2
-            width: control.width
-            height: control.height
-
-            color: LsColors.controlColor
-            border {
-                width: (control.pressed ? LsColors.highlightWidth : LsColors.borderWidth)
-                color: (control.pressed ? LsColors.highlightColor : LsColors.borderColor)
-
+        background:  Item {
+            BorderImage {
+                x: -32
+                y: -32
+                width: parent.width + 64
+                height: parent.height + 64
+                source: "qrc:/LsControls/Images/RadioButton.png"
+                border.left: 64
+                border.right: 64
+                border.top: 64
+                border.bottom: 64
             }
         }
         indicator:  Rectangle {

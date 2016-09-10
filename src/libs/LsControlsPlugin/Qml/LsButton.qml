@@ -4,18 +4,18 @@ import QtQuick.Controls.Styles 1.4
 import LsControls 1.0
 
 Button {
-
     style: ButtonStyle {
-        background:
-            Rectangle {
-            radius: control.height/2
-            width: control.width
-            height: control.height
-
-            color: LsColors.controlColor
-            border {
-                width: (control.pressed ? LsColors.highlightWidth : LsColors.borderWidth)
-                color: (control.pressed ? LsColors.highlightColor : LsColors.borderColor)
+        background: Item {
+            BorderImage {
+                x: -32
+                y: -32
+                width: parent.width + 64
+                height: parent.height + 64
+                source: "qrc:/LsControls/Images/Button.png"
+                border.left: 64
+                border.right: 64
+                border.top: 64
+                border.bottom: 64
             }
         }
         label: Text {

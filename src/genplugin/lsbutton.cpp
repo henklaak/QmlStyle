@@ -20,17 +20,11 @@ LsButton::~LsButton()
 }
 
 /**************************************************************************************************/
-void LsButton::initImages()
+void LsButton::initFinalImage()
 {
-    qCDebug( LOG_LSBUTTON ) << "initImages()";
+    qCDebug( LOG_LSBUTTON ) << "initFinalImage()";
 
-    m_imgResult = QImage( 214+64, 64+64, QImage::Format_ARGB32 );
-    m_imgResult.fill( 0x00000000 );
-
-    m_imgOutline       = m_imgResult;
-    m_imgEdgehighlight = m_imgResult;
-    m_imgEdgeshadow    = m_imgResult;
-    m_imgOcclusion     = m_imgResult;
+    m_imgFinal = QImage( 214+64, 64+64, QImage::Format_ARGB32 );
 }
 
 /**************************************************************************************************/
@@ -38,7 +32,14 @@ void LsButton::initOutline()
 {
     qCDebug( LOG_LSBUTTON ) << "initOutline()";
 
-    m_contour = QPainterPath();
-    m_contour.addRoundedRect( QRectF( 32, 32, 214, 64 ), 32, 32 );
+    m_outlinePath = QPainterPath();
+    m_outlinePath.addRoundedRect( QRectF( 32, 32, 214, 64 ), 32, 32 );
 }
+
+/**************************************************************************************************/
+void LsButton::initControl()
+{
+    qCDebug( LOG_LSBUTTON ) << "initControl()";
+}
+
 

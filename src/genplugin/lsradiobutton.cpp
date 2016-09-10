@@ -20,17 +20,11 @@ LsRadioButton::~LsRadioButton()
 }
 
 /**************************************************************************************************/
-void LsRadioButton::initImages()
+void LsRadioButton::initFinalImage()
 {
-    qCDebug( LOG_LSRADIOBUTTON ) << "initImages()";
+    qCDebug( LOG_LSRADIOBUTTON ) << "initFinalImage()";
 
-    m_imgResult = QImage( 32+64, 32+64, QImage::Format_ARGB32 );
-    m_imgResult.fill( 0x00000000 );
-
-    m_imgOutline       = m_imgResult;
-    m_imgEdgehighlight = m_imgResult;
-    m_imgEdgeshadow    = m_imgResult;
-    m_imgOcclusion     = m_imgResult;
+    m_imgFinal = QImage( 32+64, 32+64, QImage::Format_ARGB32 );
 }
 
 /**************************************************************************************************/
@@ -38,7 +32,13 @@ void LsRadioButton::initOutline()
 {
     qCDebug( LOG_LSRADIOBUTTON ) << "initOutline()";
 
-    m_contour = QPainterPath();
-    m_contour.addRoundedRect( QRectF( 32, 32, 32, 32 ), 16, 16 );
+    m_outlinePath = QPainterPath();
+    m_outlinePath.addRoundedRect( QRectF( 32, 32, 32, 32 ), 16, 16 );
+}
+
+/**************************************************************************************************/
+void LsRadioButton::initControl()
+{
+    qCDebug( LOG_LSRADIOBUTTON ) << "initControl()";
 }
 

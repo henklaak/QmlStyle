@@ -12,6 +12,7 @@ public:
     explicit LsProgressBar( QObject *a_parent = nullptr );
     virtual ~LsProgressBar();
 
-    void initImages() Q_DECL_OVERRIDE;
+    void initFinalImage() Q_DECL_OVERRIDE;
     void initOutline() Q_DECL_OVERRIDE;
+    void initControl() Q_DECL_OVERRIDE;
 };

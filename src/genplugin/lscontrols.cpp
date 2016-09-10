@@ -26,14 +26,37 @@ void LsControls::render()
     qCDebug( LOG_LSCONTROLS ) << "render()";
 
     initImages();
+
     initOutline();
     renderOutline();
-    renderEdgeHighlight();
-    renderEdgeShadow();
-    renderOcclusion();
+    renderOutlineHighlight();
+    renderOutlineShadow();
+    renderOutlineOcclusion();
+
+    initControl();
+    renderControl();
+
     flattenImage();
     saveResult();
 }
+
+/**************************************************************************************************/
+void LsControls::initImages()
+{
+    qCDebug( LOG_LSCONTROLS ) << "initImages()";
+
+    initFinalImage();
+    m_imgFinal.fill( 0x00000000);
+
+    m_imgOutline       = m_imgFinal;
+    m_imgOutlineHighlight = m_imgFinal;
+    m_imgOutlineShadow    = m_imgFinal;
+    m_imgOutlineOcclusion     = m_imgFinal;
+    m_imgControl = m_imgFinal;
+
+    //m_imgFinal.fill( 0xff3d4264 );
+}
+
 
 /**************************************************************************************************/
 void LsControls::renderOutline()
@@ -46,55 +69,69 @@ void LsControls::renderOutline()
 
     // Darken hole
     painter.setPen( Qt::NoPen );
-    painter.fillPath( m_contour, QBrush( QColor( 0, 0, 0, 32 ) ) );
+    painter.fillPath( m_outlinePath, QBrush( QColor( 0, 0, 0, 32 ) ) );
 }
 
 /**************************************************************************************************/
-void LsControls::renderEdgeHighlight()
+void LsControls::renderOutlineHighlight()
 {
     qCDebug( LOG_LSCONTROLS ) << "renderEdgeHighlight()";
     {
-        m_imgEdgehighlight.fill( 0xffffffff );
+        m_imgOutlineHighlight.fill( 0xffffffff );
 
-        QPainter painter( &m_imgEdgehighlight );
+        QPainter painter( &m_imgOutlineHighlight );
         painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
-        painter.fillPath( m_contour, QBrush( QColor( 0, 0, 0, 255 ) ) );
+        painter.fillPath( m_outlinePath, QBrush( QColor( 0, 0, 0, 255 ) ) );
     }
 
-    m_imgEdgehighlight = calcVertDerivative( m_imgEdgehighlight, false, QColor( 255, 255, 255, 64) );
-    m_imgEdgehighlight = blurImage( m_imgEdgehighlight, 4 );
+    m_imgOutlineHighlight = calcVertDerivative( m_imgOutlineHighlight, false, QColor( 255, 255, 255, 64) );
+    m_imgOutlineHighlight = blurImage( m_imgOutlineHighlight, 4 );
 }
 
 /**************************************************************************************************/
-void LsControls::renderEdgeShadow()
+void LsControls::renderOutlineShadow()
 {
     qCDebug( LOG_LSCONTROLS ) << "renderEdgeShadow()";
     {
-        m_imgEdgeshadow.fill( 0xffffffff );
+        m_imgOutlineShadow.fill( 0xffffffff );
 
-        QPainter painter( &m_imgEdgeshadow );
+        QPainter painter( &m_imgOutlineShadow );
         painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
-        painter.fillPath( m_contour, QBrush( QColor( 0, 0, 0, 255 ) ) );
+        painter.fillPath( m_outlinePath, QBrush( QColor( 0, 0, 0, 255 ) ) );
     }
 
-    m_imgEdgeshadow = calcVertDerivative( m_imgEdgeshadow, true, QColor( 0, 0, 0, 192) );
-    m_imgEdgeshadow = blurImage( m_imgEdgeshadow, 8 );
+    m_imgOutlineShadow = calcVertDerivative( m_imgOutlineShadow, true, QColor( 0, 0, 0, 192) );
+    m_imgOutlineShadow = blurImage( m_imgOutlineShadow, 8 );
 }
 
 /**************************************************************************************************/
-void LsControls::renderOcclusion()
+void LsControls::renderOutlineOcclusion()
 {
     qCDebug( LOG_LSCONTROLS ) << "renderOcclusion()";
     {
-        m_imgOcclusion.fill( 0xffffffff );
+        m_imgOutlineOcclusion.fill( 0xffffffff );
 
-        QPainter painter( &m_imgOcclusion );
+        QPainter painter( &m_imgOutlineOcclusion );
         painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
-        painter.fillPath( m_contour, QBrush( QColor( 0, 0, 0, 255 ) ) );
+        painter.fillPath( m_outlinePath, QBrush( QColor( 0, 0, 0, 255 ) ) );
     }
 
-    m_imgOcclusion = calcOmniDerivative( m_imgOcclusion, QColor( 0, 0, 0, 192) );
-    m_imgOcclusion = blurImage( m_imgOcclusion, 8 );
+    m_imgOutlineOcclusion = calcOmniDerivative( m_imgOutlineOcclusion, QColor( 0, 0, 0, 192) );
+    m_imgOutlineOcclusion = blurImage( m_imgOutlineOcclusion, 8 );
+}
+
+/**************************************************************************************************/
+void LsControls::renderControl()
+{
+    qCDebug( LOG_LSCONTROLS ) << "renderControl()";
+
+    // Prepare empty transparent image
+    QPainter painter( &m_imgControl );
+    painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
+
+    // Lighten hole
+    painter.setPen( Qt::NoPen );
+    painter.fillPath( m_controlPath, QBrush( QColor( 255, 255, 255, 32 ) ) );
 }
 
 /**************************************************************************************************/
@@ -104,41 +141,47 @@ void LsControls::flattenImage()
 
     // Merge edge shadow
     {
-        QPainter painter( &m_imgResult );
+        QPainter painter( &m_imgFinal );
         painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
-        painter.setClipPath( m_contour );
+        painter.setClipPath( m_outlinePath );
         painter.drawImage( m_imgOutline.rect(), m_imgOutline, m_imgOutline.rect() );
     }
 
     // Merge edge shadow
     {
-        QPainter painter( &m_imgResult );
+        QPainter painter( &m_imgFinal );
         painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
-        painter.setClipPath( m_contour );
-        painter.drawImage( m_imgEdgeshadow.rect(), m_imgEdgeshadow, m_imgEdgeshadow.rect() );
+        painter.setClipPath( m_outlinePath );
+        painter.drawImage( m_imgOutlineShadow.rect(), m_imgOutlineShadow, m_imgOutlineShadow.rect() );
     }
 
     // Merge edge highlight
     {
-        QPainter painter( &m_imgResult );
+        QPainter painter( &m_imgFinal );
         painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
 
         QPainterPath invcontour, invcontour2;
-        invcontour.addRect(m_imgEdgehighlight.rect());
-        invcontour2 = invcontour.subtracted(m_contour);
+        invcontour.addRect(m_imgOutlineHighlight.rect());
+        invcontour2 = invcontour.subtracted(m_outlinePath);
 
         painter.setClipPath( invcontour2 );
-        painter.drawImage( m_imgEdgehighlight.rect(), m_imgEdgehighlight, m_imgEdgehighlight.rect() );
+        painter.drawImage( m_imgOutlineHighlight.rect(), m_imgOutlineHighlight, m_imgOutlineHighlight.rect() );
     }
 
     // Merge occlusion
     {
-        QPainter painter( &m_imgResult );
+        QPainter painter( &m_imgFinal );
         painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
-        painter.setClipPath( m_contour );
-        painter.drawImage( m_imgOcclusion.rect(), m_imgOcclusion, m_imgOcclusion.rect() );
+        painter.setClipPath( m_outlinePath );
+        painter.drawImage( m_imgOutlineOcclusion.rect(), m_imgOutlineOcclusion, m_imgOutlineOcclusion.rect() );
     }
 
+    // Merge control
+    {
+        QPainter painter( &m_imgFinal );
+        painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
+        painter.drawImage( m_imgControl.rect(), m_imgControl, m_imgControl.rect() );
+    }
 
     //m_imgResult = m_imgOutline;
 }
@@ -149,10 +192,10 @@ void LsControls::saveResult()
     qCDebug( LOG_LSCONTROLS ) << "saveResult()";
 
 //    m_imgOutline.save( m_name + "_outline.png", "png" );
-//    m_imgEdgehighlight.save( m_name + "_edge_high.png", "png" );
-//    m_imgEdgeshadow.save( m_name + "_edge_shadow.png", "png" );
-//    m_imgOcclusion.save( m_name + "_occlusion.png", "png" );
-    m_imgResult.save( m_name + ".png", "png" );
+//    m_imgOutlineHighlight.save( m_name + "_edge_high.png", "png" );
+//    m_imgOutlineShadow.save( m_name + "_edge_shadow.png", "png" );
+//    m_imgOutlineOcclusion.save( m_name + "_occlusion.png", "png" );
+    m_imgFinal.save( m_name + ".png", "png" );
 }
 
 /**************************************************************************************************/

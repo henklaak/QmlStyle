@@ -4,7 +4,9 @@ add_executable(Generator
     lsbutton.cpp
     lscheckbox.cpp
     lsprogressbar.cpp
-    lsradiobutton.cpp)
+    lsradiobutton.cpp
+    lsslider.cpp
+    )
 
 target_link_libraries(Generator
     Qt5::Core

@@ -12,6 +12,7 @@ public:
     explicit LsButton( QObject *a_parent = nullptr );
     virtual ~LsButton();
 
-    void initImages() Q_DECL_OVERRIDE;
+    void initFinalImage() Q_DECL_OVERRIDE;
     void initOutline() Q_DECL_OVERRIDE;
+    void initControl() Q_DECL_OVERRIDE;
 };

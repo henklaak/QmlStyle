@@ -4,16 +4,24 @@ import QtQuick.Controls.Styles 1.4
 import LsControls 1.0
 
 Slider {
+    height: 32
+
     style: SliderStyle {
-        groove: Rectangle {
-            radius: control.height/2
+        groove:  Item {
             width: control.width
             height: control.height
 
-            color: LsColors.grooveColor
-            border {
-                width: LsColors.borderWidth
-                color: LsColors.borderColor
+            BorderImage {
+                visible: true
+                x: -32
+                y: -32
+                width: parent.width + 64
+                height: parent.height + 64
+                source: "qrc:/LsControls/Images/Slider.png"
+                border.left: 64
+                border.right: 64
+                border.top: 64
+                border.bottom: 64
             }
         }
 

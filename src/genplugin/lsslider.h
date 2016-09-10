@@ -4,13 +4,13 @@
 #include <lscontrols.h>
 
 /**************************************************************************************************/
-class LsRadioButton : public LsControls
+class LsSlider : public LsControls
 {
     Q_OBJECT
 
 public:
-    explicit LsRadioButton( QObject *a_parent = nullptr );
-    virtual ~LsRadioButton();
+    explicit LsSlider( QObject *a_parent = nullptr );
+    virtual ~LsSlider();
 
     void initFinalImage() Q_DECL_OVERRIDE;
     void initOutline() Q_DECL_OVERRIDE;

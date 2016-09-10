@@ -12,6 +12,7 @@ public:
     explicit LsCheckBox( QObject *a_parent = nullptr );
     virtual ~LsCheckBox();
 
-    void initImages() Q_DECL_OVERRIDE;
+    void initFinalImage() Q_DECL_OVERRIDE;
     void initOutline() Q_DECL_OVERRIDE;
+    void initControl() Q_DECL_OVERRIDE;
 };

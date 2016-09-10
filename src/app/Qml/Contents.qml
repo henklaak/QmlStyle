@@ -17,7 +17,7 @@ Item {
     LsLabel { x: 388; y: 412; width: 120; height: 64; text: "Lost Password?"}
     LsButton { x: 548; y: 412; width: 120; height: 64; checkable: true; checked: true; text: "Pressme"}
 
-    LsSlider { id: slider; x: 102; y: 715; width: 440; height: 14; minimumValue: 0; maximumValue: 100; }
+    LsSlider { id: slider; x: 102; y: 715; width: 440; height: 32; minimumValue: 0; maximumValue: 100; }
     LsRadioButton { x:  953; y: 635; }
     LsRadioButton { x: 1010; y: 635; checked: true; }
     LsRadioButton { x: 1068; y: 635; checked: true; pressed: true; }
@@ -31,7 +31,7 @@ Item {
     LsSwitch{ x: 490; y: 889; width: 135; height: 50; }
     LsSwitch{ x: 702; y: 889; width: 135; height: 50; checked: true; }
 
-    LsButton { x: 454; y: 1062; width: 214; height: 64; text: "Pressme"; }
+    LsButton { x: 454; y: 1062; width: 214; height: 64; text: "Pressme2"; }
     LsButton { x: 454; y: 1152; width: 214; height: 64; text: "Pressme"; checkable: true; }
     LsButton { x: 454; y: 1241; width: 214; height: 64; text: "Pressme"; checkable: true; checked: true; }
 }

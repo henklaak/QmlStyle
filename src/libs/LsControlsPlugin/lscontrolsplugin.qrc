@@ -13,5 +13,10 @@
         <file>Qml/LsText.qml</file>
         <file>Qml/LsTextField.qml</file>
         <file>Qml/LsColors.qml</file>
+        <file>Images/Button.png</file>
+        <file>Images/CheckBox.png</file>
+        <file>Images/ProgressBar.png</file>
+        <file>Images/RadioButton.png</file>
+        <file>Images/Slider.png</file>
     </qresource>
 </RCC>
