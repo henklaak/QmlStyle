@@ -52,7 +52,12 @@ protected:
     QImage m_imgControlPressedShadow;
 
     QImage m_imgFinalEmpty;
-    QImage m_imgFinalNormal;
-    QImage m_imgFinalPressed;
-    QImage m_imgFinalDisabled;
+    QImage m_imgFinalEnabledPressedChecked;
+    QImage m_imgFinalEnabledPressedUnchecked;
+    QImage m_imgFinalEnabledUnpressedChecked;
+    QImage m_imgFinalEnabledUnpressedUnchecked;
+    QImage m_imgFinalDisabledPressedChecked;
+    QImage m_imgFinalDisabledPressedUnchecked;
+    QImage m_imgFinalDisabledUnpressedChecked;
+    QImage m_imgFinalDisabledUnpressedUnchecked;
 };
