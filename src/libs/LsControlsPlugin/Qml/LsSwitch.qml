@@ -8,8 +8,9 @@ Switch {
     property string textOn: "On"
     property string textOff: "Off"
 
-    width: 60
-    height: 40
+    implicitWidth: 240
+    implicitHeight: 64
+
     style: SwitchStyle {
         groove: Rectangle {
             implicitWidth: control.width
@@ -30,19 +31,6 @@ Switch {
             }
         }
         handle: Item {
-            width: height
-
-            Rectangle {
-                anchors.fill: parent
-                anchors.margins: 4
-
-                radius: height/2
-                color: LsColors.controlColor
-                border {
-                    width: (control.pressed ? LsColors.highlightWidth : LsColors.borderWidth)
-                    color: (control.pressed ? LsColors.highlightColor : LsColors.borderColor)
-                }
-            }
         }
     }
 }

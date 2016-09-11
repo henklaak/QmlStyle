@@ -24,7 +24,7 @@ void LsComboBox::initFinalImage()
 {
     qCDebug( LOG_LSCOMBOBOX ) << "initFinalImage()";
 
-    m_imgFinalEmpty = QImage( 214 + 64, 64 + 64, QImage::Format_ARGB32 );
+    m_imgFinalEmpty = QImage( 214 + 64, 48 + 64, QImage::Format_ARGB32 );
 }
 
 /**************************************************************************************************/
@@ -33,12 +33,18 @@ void LsComboBox::initOutline()
     qCDebug( LOG_LSCOMBOBOX ) << "initOutline()";
 
     m_outlinePath = QPainterPath();
-    m_outlinePath.addRoundedRect( QRectF( 32, 32, 214, 64 ), 8, 8 );
+    m_outlinePath.addRoundedRect( QRectF( 32, 32, 214, 48 ), 8, 8 );
 }
 
 /**************************************************************************************************/
 void LsComboBox::initControl()
 {
     qCDebug( LOG_LSCOMBOBOX ) << "initControl()";
+    m_controlPathOuter = QPainterPath();
+    m_controlPathOuter.addRoundedRect( QRectF( 34, 34, 210, 44 ), 6, 6 );
+
+    m_controlPathInner = QPainterPath();
+    m_controlPathInner.addRoundedRect( QRectF( 37, 37, 204, 38 ), 3, 3 );
+
 }
 

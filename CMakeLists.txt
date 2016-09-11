@@ -3,14 +3,14 @@ cmake_minimum_required(VERSION 3.5)
 project(QmlStyleLaaksoft)
 
 # Test
-enable_testing()
+#enable_testing()
 
 # External dependencies
-find_package(Qt5Core 5 REQUIRED)
-find_package(Qt5Gui 5 REQUIRED)
-find_package(Qt5Qml 5 REQUIRED)
-find_package(Qt5Test 5 REQUIRED)
-find_package(Qt5Widgets 5 REQUIRED)
+find_package(Qt5Core 5.7 REQUIRED)
+find_package(Qt5Gui 5.7 REQUIRED)
+find_package(Qt5Qml 5.7 REQUIRED)
+find_package(Qt5Test 5.7 REQUIRED)
+find_package(Qt5Widgets 5.7 REQUIRED)
 
 # Common settings
 set (CMAKE_AUTOMOC ON)

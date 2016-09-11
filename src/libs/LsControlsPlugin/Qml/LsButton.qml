@@ -4,8 +4,8 @@ import QtQuick.Controls.Styles 1.4
 import LsControls 1.0
 
 Button {
+    implicitWidth: 240
     implicitHeight: 64
-    implicitWidth:  240
 
     style: ButtonStyle {
         background: Item {

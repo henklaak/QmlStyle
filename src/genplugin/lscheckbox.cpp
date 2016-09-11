@@ -41,10 +41,10 @@ void LsCheckBox::initControl()
 {
     qCDebug( LOG_LSCHECKBOX ) << "initControl()";
 
-    m_controlPath = QPainterPath();
-    m_controlPath.addRoundedRect( QRectF( 34, 34, 28, 28 ), 6, 6 );
+    m_controlPathOuter = QPainterPath();
+    m_controlPathOuter.addRoundedRect( QRectF( 34, 34, 28, 28 ), 6, 6 );
 
-    m_controlPath2 = QPainterPath();
-    m_controlPath2.addRoundedRect( QRectF( 37, 37, 22, 22 ), 4, 4 );
+    m_controlPathInner = QPainterPath();
+    m_controlPathInner.addRoundedRect( QRectF( 37, 37, 22, 22 ), 4, 4 );
 }
 

@@ -2,7 +2,8 @@ add_executable(MyApp
     myapp.cpp
     myapp.qrc
     Qml/MyApp.qml
-    Qml/Contents.qml)
+    Qml/Contents.qml
+)
 
 target_link_libraries(MyApp
     Qt5::Core

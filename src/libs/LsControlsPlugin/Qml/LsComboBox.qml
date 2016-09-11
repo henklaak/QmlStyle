@@ -4,6 +4,9 @@ import QtQuick.Controls.Styles 1.4
 import LsControls 1.0
 
 ComboBox {
+    implicitWidth: 240
+    implicitHeight: 48
+
     style: ComboBoxStyle {
         background: Item {
             width: control.width

@@ -4,7 +4,8 @@ import QtQuick.Controls.Styles 1.4
 import LsControls 1.0
 
 Slider {
-    height: 32
+    implicitWidth: 240
+    implicitHeight: 32
 
     style: SliderStyle {
         groove:  Item {
@@ -30,20 +31,6 @@ Slider {
         }
 
         handle: Item {
-            height: 20
-            width: height
-
-            Rectangle {
-                anchors.fill: parent
-                anchors.margins: -10
-
-                radius: height/2
-                color: LsColors.controlColor
-                border {
-                    width: (control.pressed ? LsColors.highlightWidth : LsColors.borderWidth)
-                    color: (control.pressed ? LsColors.highlightColor : LsColors.borderColor)
-                }
-            }
         }
     }
 }

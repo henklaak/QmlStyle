@@ -24,7 +24,7 @@ void LsTextField::initFinalImage()
 {
     qCDebug( LOG_LSTEXTFIELD ) << "initFinalImage()";
 
-    m_imgFinalEmpty = QImage( 214 + 64, 64 + 64, QImage::Format_ARGB32 );
+    m_imgFinalEmpty = QImage( 214 + 64, 48 + 64, QImage::Format_ARGB32 );
 }
 
 /**************************************************************************************************/
@@ -33,7 +33,7 @@ void LsTextField::initOutline()
     qCDebug( LOG_LSTEXTFIELD ) << "initOutline()";
 
     m_outlinePath = QPainterPath();
-    m_outlinePath.addRoundedRect( QRectF( 32, 32, 214, 64 ), 8, 8 );
+    m_outlinePath.addRoundedRect( QRectF( 32, 32, 214, 48 ), 8, 8 );
 }
 
 /**************************************************************************************************/

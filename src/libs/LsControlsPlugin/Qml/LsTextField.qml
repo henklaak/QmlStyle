@@ -4,6 +4,9 @@ import QtQuick.Controls.Styles 1.4
 import LsControls 1.0
 
 TextField {
+    implicitWidth: 240
+    implicitHeight: 48
+
     style: TextFieldStyle {
         background: Item {
             width: control.width

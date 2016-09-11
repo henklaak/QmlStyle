@@ -6,7 +6,7 @@ import QtGraphicalEffects 1.0
 
 ApplicationWindow {
     width: 800
-    height: 600
+    height: 800
     visible: true
 
     Image {
@@ -17,12 +17,13 @@ ApplicationWindow {
 
     Contents {
         anchors.fill: parent
-        RadialGradient {
-            anchors.fill: parent
-            gradient: Gradient {
-                GradientStop { position: 0.0; color: "#00000000" }
-                GradientStop { position: 1.0; color: "#40000000" }
-            }
+        anchors.margins: 20
+    }
+    RadialGradient {
+        anchors.fill: parent
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: "#00000000" }
+            GradientStop { position: 1.0; color: "#20000000" }
         }
     }
 }

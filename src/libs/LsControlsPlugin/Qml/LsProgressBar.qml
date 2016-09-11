@@ -4,6 +4,9 @@ import QtQuick.Controls.Styles 1.4
 import LsControls 1.0
 
 ProgressBar {
+    implicitWidth: 240
+    implicitHeight: 32
+
     style: ProgressBarStyle {
         background: Item {
             width: control.width
@@ -27,18 +30,7 @@ ProgressBar {
             }
         }
 
-        progress:
-            Item {
-            width: control.width
-            height: control.height
-            Rectangle {
-                anchors.fill: parent
-                anchors.margins: 4
-
-                radius: height/2
-
-                color: LsColors.highlightColor
-            }
+        progress: Item {
         }
     }
 }
