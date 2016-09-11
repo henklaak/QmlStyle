@@ -27,7 +27,18 @@ CheckBox {
                 border.bottom: 64
             }
         }
+        label: Text {
+            // TODO
+            text: "hai" //control.text
+            //anchors.fill: parent
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            color: LsColors.textColor
+            font: LsColors.normalFont
+        }
         indicator:  Rectangle {
+            // TODO
+            visible: false
             x: control.width * 0.2
             implicitWidth: control.width*0.6
             implicitHeight: control.width*0.6

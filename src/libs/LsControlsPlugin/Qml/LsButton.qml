@@ -13,6 +13,7 @@ Button {
                 y: -32
                 width: parent.width + 64
                 height: parent.height + 64
+
                 source: ("qrc:/LsControls/Images/Button_%1_%2_%3.png")
                 .arg(enabled ? "enabled" : "disabled")
                 .arg(pressed ? "pressed" : "unpressed")

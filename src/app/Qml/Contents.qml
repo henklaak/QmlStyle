@@ -10,9 +10,20 @@ Item {
     width: 1200
     height: 1542
 
-    LsComboBox { x: 102; y: 228; width: 210; height: 64; }
+    LsComboBox {
+        x: 102
+        y: 228;
+        width: 210
+        height: 64
+    }
 
-    LsTextField { x: 388; y: 256; width: 280; height: 50; text: "test";}
+    LsTextField {
+        x: 388
+        y: 256
+        width: 280
+        height: 50
+        text: "test";
+    }
     LsTextField { x: 388; y: 331; width: 280; height: 50; text: "test";}
     LsLabel { x: 388; y: 412; width: 120; height: 64; text: "Lost Password?"}
     LsButton { x: 548; y: 412; width: 120; height: 64; checkable: true; checked: true; text: "Pressme"}

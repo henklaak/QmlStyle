@@ -19,9 +19,10 @@ public:
     virtual void initControl() = 0;
     virtual void initImages() final;
 
-    virtual void renderOutline() final;
-    virtual void renderControlNormal() final;
-    virtual void renderControlPressed() final;
+    virtual void renderOutlineComponents() final;
+    virtual void renderControlEnabledComponents() final;
+    virtual void renderControlPressedComponents() final;
+    virtual void renderControlCheckedComponents() final;
 
     virtual void flattenImage();
     virtual void saveResult();
@@ -50,6 +51,8 @@ protected:
     QImage m_imgControlPressed;
     QImage m_imgControlPressedHighlight;
     QImage m_imgControlPressedShadow;
+
+    QImage m_imgControlChecked;
 
     QImage m_imgFinalEmpty;
     QImage m_imgFinalEnabledPressedChecked;

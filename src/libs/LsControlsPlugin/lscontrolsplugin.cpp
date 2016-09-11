@@ -18,7 +18,6 @@ void LsControlsPlugin::registerTypes( const char* a_uri )
 {
     qCDebug( LOG_LSCONTROLSPLUGIN ) << "registerTypes()" << a_uri;
 
-    // @uri LsControls
     qmlRegisterSingletonType( QUrl( "qrc:/LsControls/Qml/LsColors.qml" ),
                               a_uri, 1, 0, "LsColors" );
     qmlRegisterType( QUrl( "qrc:/LsControls/Qml/LsButton.qml" ),

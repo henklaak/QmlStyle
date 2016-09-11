@@ -30,9 +30,10 @@ void LsControls::render()
     initOutline();
     initControl();
 
-    renderOutline();
-    renderControlNormal();
-    renderControlPressed();
+    renderOutlineComponents();
+    renderControlEnabledComponents();
+    renderControlPressedComponents();
+    renderControlCheckedComponents();
 
     flattenImage();
     saveResult();
@@ -59,6 +60,8 @@ void LsControls::initImages()
     m_imgControlPressedHighlight        = m_imgFinalEmpty;
     m_imgControlPressedShadow           = m_imgFinalEmpty;
 
+    m_imgControlChecked                  = m_imgFinalEmpty;
+
     m_imgFinalEnabledPressedChecked      = m_imgFinalEmpty;
     m_imgFinalEnabledPressedUnchecked    = m_imgFinalEmpty;
     m_imgFinalEnabledUnpressedChecked    = m_imgFinalEmpty;
@@ -71,9 +74,9 @@ void LsControls::initImages()
 
 
 /**************************************************************************************************/
-void LsControls::renderOutline()
+void LsControls::renderOutlineComponents()
 {
-    qCDebug( LOG_LSCONTROLS ) << "renderOutline()";
+    qCDebug( LOG_LSCONTROLS ) << "renderOutlineComponents()";
 
     {
         // Prepare empty transparent image
@@ -120,9 +123,9 @@ void LsControls::renderOutline()
 }
 
 /**************************************************************************************************/
-void LsControls::renderControlNormal()
+void LsControls::renderControlEnabledComponents()
 {
-    qCDebug( LOG_LSCONTROLS ) << "renderControl()";
+    qCDebug( LOG_LSCONTROLS ) << "renderControlEnabledComponents()";
 
     {
         // Prepare empty transparent image
@@ -130,7 +133,7 @@ void LsControls::renderControlNormal()
         painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
 
         painter.setPen( Qt::NoPen );
-        painter.fillPath( m_controlPath, QColor( 253, 204, 102, 255 ) );
+        painter.fillPath( m_controlPath, QColor( 253, 204, 102, 200 ) );
     }
 
     {
@@ -158,9 +161,9 @@ void LsControls::renderControlNormal()
 }
 
 /**************************************************************************************************/
-void LsControls::renderControlPressed()
+void LsControls::renderControlPressedComponents()
 {
-    qCDebug( LOG_LSCONTROLS ) << "renderControlPressed()";
+    qCDebug( LOG_LSCONTROLS ) << "renderControlPressedComponents()";
 
     {
         // Prepare empty transparent image
@@ -168,7 +171,7 @@ void LsControls::renderControlPressed()
         painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
 
         painter.setPen( Qt::NoPen );
-        painter.fillPath( m_controlPath, QColor( 253, 204, 102, 224 ) );
+        painter.fillPath( m_controlPath, QColor( 253, 204, 102, 160 ) );
     }
 
     {
@@ -194,6 +197,34 @@ void LsControls::renderControlPressed()
     m_imgControlPressedShadow = calcVertDerivative( m_imgControlPressedShadow, false, QColor( 0, 0, 0,
                                 32 ) );
     m_imgControlPressedShadow = blurImage( m_imgControlPressedShadow, 5 );
+}
+
+/**************************************************************************************************/
+void LsControls::renderControlCheckedComponents()
+{
+    qCDebug( LOG_LSCONTROLS ) << "renderControlCheckedComponents()";
+
+    {
+        m_imgControlChecked.fill( 0x00ff0000 );
+
+        // Prepare empty transparent image
+        QPainter painter( &m_imgControlChecked );
+        painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
+
+        QPen stroker(QColor(255,16,16, 96), 4);
+        painter.strokePath(m_controlPath, stroker);
+    }
+    m_imgControlChecked = blurImage( m_imgControlChecked , 5 );
+    {
+        // Prepare empty transparent image
+        QPainter painter( &m_imgControlChecked );
+        painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
+
+        painter.setClipPath( m_controlPath );
+        QPen stroker(QColor(255,0,0), 1);
+        painter.strokePath(m_controlPath, stroker);
+    }
+    m_imgControlChecked = blurImage( m_imgControlChecked , 1 );
 }
 
 /**************************************************************************************************/
@@ -296,7 +327,26 @@ void LsControls::flattenImage()
     //////////////////////////////////////
 
     m_imgFinalEnabledPressedChecked      = m_imgFinalEnabledPressedUnchecked;
+
+    {
+        // Merge control
+        QPainter painter( &m_imgFinalEnabledPressedChecked );
+        painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
+        painter.drawImage( m_imgControlChecked.rect(), m_imgControlChecked, m_imgControlChecked.rect() );
+    }
+
+    //////////////////////////////////////
+
     m_imgFinalEnabledUnpressedChecked    = m_imgFinalEnabledUnpressedUnchecked;
+
+    {
+        // Merge control
+        QPainter painter( &m_imgFinalEnabledUnpressedChecked );
+        painter.setRenderHints( QPainter::Antialiasing | QPainter::HighQualityAntialiasing );
+        painter.drawImage( m_imgControlChecked.rect(), m_imgControlChecked, m_imgControlChecked.rect() );
+    }
+
+
     m_imgFinalDisabledPressedChecked     = m_imgFinalEmpty;
     m_imgFinalDisabledUnpressedChecked   = m_imgFinalEmpty;
     m_imgFinalDisabledPressedUnchecked   = m_imgFinalEmpty;
@@ -311,17 +361,25 @@ void LsControls::saveResult()
 
     QDir base( "/home/henklaak/Projects/QmlStyleLaaksoft/src/libs/LsControlsPlugin/Images" );
 
-    m_imgFinalEnabledPressedChecked.save( base.absoluteFilePath( m_name + "_enabled_pressed_checked.png" ) );
-    m_imgFinalEnabledPressedUnchecked.save( base.absoluteFilePath( m_name + "_enabled_pressed_unchecked.png" ) );
+    m_imgFinalEnabledPressedChecked.save( base.absoluteFilePath( m_name +
+                                          "_enabled_pressed_checked.png" ) );
+    m_imgFinalEnabledPressedUnchecked.save( base.absoluteFilePath( m_name +
+                                            "_enabled_pressed_unchecked.png" ) );
 
-    m_imgFinalEnabledUnpressedChecked.save( base.absoluteFilePath( m_name + "_enabled_unpressed_checked.png" ) );
-    m_imgFinalEnabledUnpressedUnchecked.save( base.absoluteFilePath( m_name + "_enabled_unpressed_unchecked.png" ) );
+    m_imgFinalEnabledUnpressedChecked.save( base.absoluteFilePath( m_name +
+                                            "_enabled_unpressed_checked.png" ) );
+    m_imgFinalEnabledUnpressedUnchecked.save( base.absoluteFilePath( m_name +
+            "_enabled_unpressed_unchecked.png" ) );
 
-    m_imgFinalDisabledPressedChecked.save( base.absoluteFilePath( m_name + "_disabled_pressed_checked.png" ) );
-    m_imgFinalDisabledPressedUnchecked.save( base.absoluteFilePath( m_name + "_disabled_pressed_unchecked.png" ) );
+    m_imgFinalDisabledPressedChecked.save( base.absoluteFilePath( m_name +
+                                           "_disabled_pressed_checked.png" ) );
+    m_imgFinalDisabledPressedUnchecked.save( base.absoluteFilePath( m_name +
+            "_disabled_pressed_unchecked.png" ) );
 
-    m_imgFinalDisabledUnpressedChecked.save( base.absoluteFilePath( m_name + "_disabled_unpressed_checked.png" ) );
-    m_imgFinalDisabledUnpressedUnchecked.save( base.absoluteFilePath( m_name + "_disabled_unpressed_unchecked.png" ) );
+    m_imgFinalDisabledUnpressedChecked.save( base.absoluteFilePath( m_name +
+            "_disabled_unpressed_checked.png" ) );
+    m_imgFinalDisabledUnpressedUnchecked.save( base.absoluteFilePath( m_name +
+            "_disabled_unpressed_unchecked.png" ) );
 
 }
 

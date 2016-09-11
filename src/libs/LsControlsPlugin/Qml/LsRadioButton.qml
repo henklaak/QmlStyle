@@ -26,6 +26,7 @@ RadioButton {
             }
         }
         indicator:  Rectangle {
+            visible: false
             x: control.width * 0.2
             implicitWidth: control.width * 0.6
             implicitHeight: control.width * 0.6
