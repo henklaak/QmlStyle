@@ -1,4 +1,4 @@
 module LsControls
-plugin LsControlsPlugin ..
+plugin LsControlsPlugin .
 classname LsControls
 typeinfo plugins.qmltypes

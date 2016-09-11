@@ -20,6 +20,7 @@ void LsControlsPlugin::registerTypes( const char* a_uri )
 
     qmlRegisterSingletonType( QUrl( "qrc:/LsControls/Qml/LsColors.qml" ),
                               a_uri, 1, 0, "LsColors" );
+
     qmlRegisterType( QUrl( "qrc:/LsControls/Qml/LsButton.qml" ),
                      a_uri, 1, 0, "LsButton" );
     qmlRegisterType( QUrl( "qrc:/LsControls/Qml/LsCheckBox.qml" ),
