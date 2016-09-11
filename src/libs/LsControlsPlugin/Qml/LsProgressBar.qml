@@ -31,6 +31,33 @@ ProgressBar {
         }
 
         progress: Item {
+            anchors.margins: 0
+            onWidthChanged: {
+                console.error("parentwidth " + width)
+                console.error("controlwidth " + control.width)
+            }
+            BorderImage {
+                // parent 0..240
+                // image 32 + 200 + 32
+                property double perc: parent.width / control.width
+                onPercChanged: console.error("Perc " + perc)
+
+                x: -32
+                y: -32
+                height: parent.height+64
+                width: 64 + perc * (240)
+                onWidthChanged: console.error("width " + width)
+
+                source: ("qrc:/LsControls/Images/ProgressBarIndicator_%1_%2_%3.png")
+                .arg("enabled")
+                .arg("unpressed")
+                .arg("unchecked")
+
+                border.left: 32 + Math.min(10,perc*100)
+                border.right: 32 + Math.min(10,perc*100)
+                border.top: 32 + Math.min(10,perc*100)
+                border.bottom: 32 + Math.min(10,perc*100)
+            }
         }
     }
 }

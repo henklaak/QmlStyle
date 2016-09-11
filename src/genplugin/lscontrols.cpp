@@ -32,7 +32,7 @@ const double BLUR_CONTROL_PRESSED_HIGHLIGHT = 5;
 const double BLUR_CONTROL_PRESSED_SHADOW = 5;
 
 const QColor QCOLOR_CONTROL_CHECKED_TRANS = QColor( 255, 0, 0, 0);
-const QColor QCOLOR_CONTROL_CHECKED = QColor( 255, 16, 16, 96 );
+const QColor QCOLOR_CONTROL_CHECKED = QColor( 255, 0, 0, 128 );
 const int WIDTH_CONTROL_CHECKED_BACK = 4;
 const int BLUR_CONTROL_CHECKED_BACK = 5;
 const int BLUR_CONTROL_CHECKED = 1;
@@ -299,6 +299,8 @@ void LsControls::renderControlCheckedComponents()
         painter.strokePath(
             m_controlPathOuter,
             stroker );
+        painter.fillPath(
+            m_controlPathChecked, QCOLOR_CONTROL_CHECKED);
     }
     m_imgControlChecked = blurImage(
                               m_imgControlChecked,

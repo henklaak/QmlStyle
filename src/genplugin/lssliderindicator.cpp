@@ -1,53 +1,49 @@
-#include "lsradiobutton.h"
+#include "lssliderindicator.h"
 #include <QDebug>
 #include <QLoggingCategory>
 #include <QPainter>
 
-Q_LOGGING_CATEGORY( LOG_LSRADIOBUTTON, "LsRadioButton", QtWarningMsg )
+Q_LOGGING_CATEGORY( LOG_LSSLIDERINDICATOR, "LsSliderIndicator", QtWarningMsg )
 
 
 /**************************************************************************************************/
-LsRadioButton::LsRadioButton( QObject *a_parent )
-    : LsControls( "RadioButton", a_parent )
+LsSliderIndicator::LsSliderIndicator( QObject *a_parent )
+    : LsControls( "SliderIndicator", a_parent )
 {
-    qCDebug( LOG_LSRADIOBUTTON ) << "LsRadioButton()";
+    qCDebug( LOG_LSSLIDERINDICATOR ) << "LsSliderIndicator()";
 }
 
 /**************************************************************************************************/
-LsRadioButton::~LsRadioButton()
+LsSliderIndicator::~LsSliderIndicator()
 {
-    qCDebug( LOG_LSRADIOBUTTON ) << "~LsRadioButton()";
+    qCDebug( LOG_LSSLIDERINDICATOR ) << "~LsSliderIndicator()";
 }
 
 /**************************************************************************************************/
-void LsRadioButton::initFinalImage()
+void LsSliderIndicator::initFinalImage()
 {
-    qCDebug( LOG_LSRADIOBUTTON ) << "initFinalImage()";
+    qCDebug( LOG_LSSLIDERINDICATOR ) << "initFinalImage()";
 
     m_imgFinalEmpty = QImage( 32 + 64, 32 + 64, QImage::Format_ARGB32 );
 }
 
 /**************************************************************************************************/
-void LsRadioButton::initOutline()
+void LsSliderIndicator::initOutline()
 {
-    qCDebug( LOG_LSRADIOBUTTON ) << "initOutline()";
+    qCDebug( LOG_LSSLIDERINDICATOR ) << "initOutline()";
 
     m_outlinePath = QPainterPath();
-    m_outlinePath.addRoundedRect( QRectF( 32, 32, 32, 32 ), 16, 16 );
+    //m_outlinePath.addRoundedRect( QRectF( 32, 32, 200, 32 ), 16, 16 );
 }
 
 /**************************************************************************************************/
-void LsRadioButton::initControl()
+void LsSliderIndicator::initControl()
 {
-    qCDebug( LOG_LSRADIOBUTTON ) << "initControl()";
+    qCDebug( LOG_LSSLIDERINDICATOR ) << "initControl()";
 
     m_controlPathOuter = QPainterPath();
     m_controlPathOuter.addRoundedRect( QRectF( 34, 34, 28, 28 ), 14, 14 );
 
     m_controlPathInner = QPainterPath();
     m_controlPathInner.addRoundedRect( QRectF( 37, 37, 22, 22 ), 11, 11 );
-
-    //m_controlPathChecked = QPainterPath();
-    //m_controlPathChecked.addRoundedRect( QRectF( 38, 38, 20, 20 ), 10, 10 );
-
 }

@@ -8,7 +8,7 @@ Slider {
     implicitHeight: 32
 
     style: SliderStyle {
-        groove:  Item {
+        groove: Item {
             width: control.width
             height: control.height
 
@@ -29,9 +29,20 @@ Slider {
                 border.bottom: 64
             }
         }
-
         handle: Item {
-        }
-    }
-}
+            anchors.centerIn: parent
+            implicitWidth: 32
+            implicitHeight: 32
+
+            Image {
+                x: -32
+                y: -32
+                source: ("qrc:/LsControls/Images/SliderIndicator_%1_%2_%3.png")
+                .arg(control.enabled ? "enabled" : "disabled")
+                .arg(control.pressed ? "pressed" : "unpressed")
+                .arg("unchecked")
+            }
+            }
+            }
+            }
 

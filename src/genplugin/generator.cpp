@@ -3,11 +3,21 @@
 #include <lsradiobutton.h>
 #include <lsprogressbar.h>
 #include <lsslider.h>
+#include <lssliderindicator.h>
 #include <lstextfield.h>
 #include <lscombobox.h>
+#include <lsprogressbarindicator.h>
 
 int main( int a_argc, char *a_argv[] )
 {
+    {
+        LsProgressBarIndicator renderer;
+        renderer.render();
+    }
+    {
+        LsSliderIndicator renderer;
+        renderer.render();
+    }
     {
         LsButton renderer;
         renderer.render();

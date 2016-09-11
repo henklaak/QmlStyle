@@ -21,6 +21,12 @@ Item {
             text: "Lost Password?"
         }
 
+        LsSlider {
+            id: slider1
+            minimumValue: 0
+            maximumValue: 100
+        }
+
         LsProgressBar {
             id: progressBar1
             minimumValue: 0
@@ -40,12 +46,6 @@ Item {
 
         LsComboBox {
             id: comboBox1
-        }
-
-        LsSlider {
-            id: slider1
-            minimumValue: 0
-            maximumValue: 100
         }
 
         ExclusiveGroup { id: pickGroup }

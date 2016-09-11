@@ -68,5 +68,21 @@
         <file>Images/TextField_enabled_pressed_unchecked.png</file>
         <file>Images/TextField_enabled_unpressed_checked.png</file>
         <file>Images/TextField_enabled_unpressed_unchecked.png</file>
+        <file>Images/SliderIndicator_disabled_pressed_checked.png</file>
+        <file>Images/SliderIndicator_disabled_pressed_unchecked.png</file>
+        <file>Images/SliderIndicator_disabled_unpressed_checked.png</file>
+        <file>Images/SliderIndicator_disabled_unpressed_unchecked.png</file>
+        <file>Images/SliderIndicator_enabled_pressed_checked.png</file>
+        <file>Images/SliderIndicator_enabled_pressed_unchecked.png</file>
+        <file>Images/SliderIndicator_enabled_unpressed_checked.png</file>
+        <file>Images/SliderIndicator_enabled_unpressed_unchecked.png</file>
+        <file>Images/ProgressBarIndicator_disabled_pressed_checked.png</file>
+        <file>Images/ProgressBarIndicator_disabled_pressed_unchecked.png</file>
+        <file>Images/ProgressBarIndicator_disabled_unpressed_checked.png</file>
+        <file>Images/ProgressBarIndicator_disabled_unpressed_unchecked.png</file>
+        <file>Images/ProgressBarIndicator_enabled_pressed_checked.png</file>
+        <file>Images/ProgressBarIndicator_enabled_pressed_unchecked.png</file>
+        <file>Images/ProgressBarIndicator_enabled_unpressed_checked.png</file>
+        <file>Images/ProgressBarIndicator_enabled_unpressed_unchecked.png</file>
     </qresource>
 </RCC>

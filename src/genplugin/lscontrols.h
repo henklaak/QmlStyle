@@ -36,8 +36,11 @@ protected:
     QString m_name;
 
     QPainterPath m_outlinePath;
+
     QPainterPath m_controlPathOuter;
     QPainterPath m_controlPathInner;
+
+    QPainterPath m_controlPathChecked;
 
     QImage m_imgOutline;
     QImage m_imgOutlineHighlight;

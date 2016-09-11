@@ -4,13 +4,13 @@
 #include <lscontrols.h>
 
 /**************************************************************************************************/
-class LsCheckBox : public LsControls
+class LsProgressBarIndicator : public LsControls
 {
     Q_OBJECT
 
 public:
-    explicit LsCheckBox( QObject *a_parent = nullptr );
-    virtual ~LsCheckBox();
+    explicit LsProgressBarIndicator( QObject *a_parent = nullptr );
+    virtual ~LsProgressBarIndicator();
 
     void initFinalImage() Q_DECL_OVERRIDE;
     void initOutline() Q_DECL_OVERRIDE;

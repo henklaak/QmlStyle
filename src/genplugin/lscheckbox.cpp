@@ -46,5 +46,9 @@ void LsCheckBox::initControl()
 
     m_controlPathInner = QPainterPath();
     m_controlPathInner.addRoundedRect( QRectF( 37, 37, 22, 22 ), 4, 4 );
+
+    //m_controlPathChecked = QPainterPath();
+    //m_controlPathChecked.addRoundedRect( QRectF( 38, 38, 20, 20 ), 4, 4 );
+
 }
 

@@ -40,10 +40,4 @@ void LsSlider::initOutline()
 void LsSlider::initControl()
 {
     qCDebug( LOG_LSSLIDER ) << "initControl()";
-
-    m_controlPathOuter = QPainterPath();
-    m_controlPathOuter.addRoundedRect( QRectF( 34, 34, 28, 28 ), 14, 14 );
-
-    m_controlPathInner = QPainterPath();
-    m_controlPathInner.addRoundedRect( QRectF( 37, 37, 22, 22 ), 11, 11 );
 }

@@ -5,8 +5,10 @@ add_executable(Generator
     lsbutton.cpp
     lscheckbox.cpp
     lsprogressbar.cpp
+    lsprogressbarindicator.cpp
     lsradiobutton.cpp
     lsslider.cpp
+    lssliderindicator.cpp
     lstextfield.cpp
     )
 
