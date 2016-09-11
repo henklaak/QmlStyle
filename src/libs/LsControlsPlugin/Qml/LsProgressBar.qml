@@ -1,7 +1,7 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
-import LsControls 1.0
+import LsControls 2.5
 
 ProgressBar {
     style: ProgressBarStyle {
@@ -16,7 +16,7 @@ ProgressBar {
                 width: parent.width + 64
                 height: parent.height + 64
                 source: ("qrc:/LsControls/Images/ProgressBar_%1_%2_%3.png")
-                .arg(enabled ? "enabled" : "disabled")
+                .arg(control.enabled ? "enabled" : "disabled")
                 .arg("unpressed")
                 .arg("unchecked")
 

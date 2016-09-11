@@ -4,7 +4,7 @@ import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 import QtGraphicalEffects 1.0
 
-import LsControls 1.0
+import LsControls 2.5
 
 LsApplicationWindow {
     x: 200
