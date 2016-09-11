@@ -5,10 +5,8 @@ import QtQuick.Controls.Styles 1.4
 import QtGraphicalEffects 1.0
 
 ApplicationWindow {
-    x: 200
-    y: 200
-    width: 1200
-    height: 1542
+    width: 800
+    height: 600
     visible: true
 
     Image {
