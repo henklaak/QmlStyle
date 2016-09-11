@@ -18,7 +18,7 @@ Item {
 
         LsLabel {
             id: label1
-            text: "Lost Password?"
+            text: "Demo reel!"
         }
 
         LsSlider {
@@ -104,14 +104,14 @@ Item {
             text: "Me too!"
         }
 
-        LsSwitch {
-            id: switch1
-        }
+//        LsSwitch {
+//            id: switch1
+//        }
 
-        LsSwitch {
-            id: switch2
-            checked: true
-        }
+//        LsSwitch {
+//            id: switch2
+//            checked: true
+//        }
 
     }
 }
