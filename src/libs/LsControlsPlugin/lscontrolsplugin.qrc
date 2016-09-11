@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/LsControls">
         <file>Images/backgroundtile.png</file>
-        <file>Qml/LsApplicationWindow.qml</file>
         <file>Qml/LsButton.qml</file>
         <file>Qml/LsCheckBox.qml</file>
         <file>Qml/LsComboBox.qml</file>

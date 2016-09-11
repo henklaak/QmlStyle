@@ -4,14 +4,18 @@ import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 import QtGraphicalEffects 1.0
 
-import LsControls 2.5
-
-LsApplicationWindow {
+ApplicationWindow {
     x: 200
     y: 200
     width: 1200
     height: 1542
     visible: true
+
+    Image {
+        anchors.fill: parent
+        source: "qrc:/LsControls/Images/backgroundtile.png"
+        fillMode: Image.Tile
+    }
 
     Contents {
         anchors.fill: parent
