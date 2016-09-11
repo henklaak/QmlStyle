@@ -32,21 +32,13 @@ ProgressBar {
 
         progress: Item {
             anchors.margins: 0
-            onWidthChanged: {
-                console.error("parentwidth " + width)
-                console.error("controlwidth " + control.width)
-            }
             BorderImage {
-                // parent 0..240
-                // image 32 + 200 + 32
                 property double perc: parent.width / control.width
-                onPercChanged: console.error("Perc " + perc)
 
                 x: -32
                 y: -32
                 height: parent.height+64
-                width: 64 + perc * (240)
-                onWidthChanged: console.error("width " + width)
+                width: 64 + 240 * perc
 
                 source: ("qrc:/LsControls/Images/ProgressBarIndicator_%1_%2_%3.png")
                 .arg("enabled")
