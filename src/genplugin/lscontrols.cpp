@@ -6,6 +6,10 @@
 
 Q_LOGGING_CATEGORY( LOG_LSCONTROLS, "LsControls", QtInfoMsg )
 
+const int LsControls::MARGIN    = 32;
+const int LsControls::STDHEIGHT = 32;
+const int LsControls::STDWIDTH  = 32;
+
 const QColor QCOLOR_WHITE = QColor( 255, 255, 255, 255 );
 const QColor QCOLOR_BLACK = QColor( 0,   0,   0, 255 );
 
@@ -31,7 +35,7 @@ const QColor QCOLOR_CONTROL_PRESSED_SHADOW = QColor( 0, 0, 0, 32 );
 const double BLUR_CONTROL_PRESSED_HIGHLIGHT = 5;
 const double BLUR_CONTROL_PRESSED_SHADOW = 5;
 
-const QColor QCOLOR_CONTROL_CHECKED_TRANS = QColor( 255, 0, 0, 0);
+const QColor QCOLOR_CONTROL_CHECKED_TRANS = QColor( 255, 0, 0, 0 );
 const QColor QCOLOR_CONTROL_CHECKED = QColor( 255, 0, 0, 128 );
 const int WIDTH_CONTROL_CHECKED_BACK = 4;
 const int BLUR_CONTROL_CHECKED_BACK = 5;
@@ -58,8 +62,7 @@ void LsControls::render()
     qCInfo( LOG_LSCONTROLS ) << "render()" << m_name;
 
     initImages();
-    initOutline();
-    initControl();
+    initOutlines();
 
     renderOutlineComponents();
     renderControlEnabledComponents();
@@ -300,7 +303,7 @@ void LsControls::renderControlCheckedComponents()
             m_controlPathOuter,
             stroker );
         painter.fillPath(
-            m_controlPathChecked, QCOLOR_CONTROL_CHECKED);
+            m_controlPathChecked, QCOLOR_CONTROL_CHECKED );
     }
     m_imgControlChecked = blurImage(
                               m_imgControlChecked,
@@ -531,7 +534,6 @@ void LsControls::saveResult()
         base.absoluteFilePath( m_name + "_disabled_unpressed_checked.png" ) );
     m_imgFinalDisabledUnpressedUnchecked.save(
         base.absoluteFilePath( m_name + "_disabled_unpressed_unchecked.png" ) );
-
 }
 
 /**************************************************************************************************/
@@ -661,4 +663,94 @@ QImage LsControls::blurImage( const QImage &a_image, double radius )
     }
 
     return imagecopy;
+}
+
+/**************************************************************************************************/
+QPainterPath LsControls::getOutline( int a_x,
+                                     int a_y,
+                                     int a_width,
+                                     int a_height,
+                                     int a_shrink,
+                                     int a_radius1,
+                                     int a_radius2,
+                                     int a_radius3,
+                                     int a_radius4 )
+{
+    qCDebug( LOG_LSCONTROLS ) << "getOutline()";
+
+    QPainterPath path;
+
+    QPointF topLeft(
+        a_x + a_shrink,
+        a_y + a_shrink );
+    QPointF topRight(
+        a_x + a_width - a_shrink,
+        a_y + a_shrink );
+    QPointF botLeft(
+        a_x + a_shrink,
+        a_y + a_height - a_shrink );
+    QPointF botRight(
+        a_x + a_width - a_shrink,
+        a_y + a_height - a_shrink );
+
+    QRectF topLeftArc  = QRectF( topLeft  + QPointF( 0, 0 ),
+                                 QSizeF( 2 * ( a_radius1 - a_shrink ),
+                                         2 * ( a_radius1 - a_shrink ) ) );
+    QRectF topRightArc = QRectF( topRight + QPointF( -2 * ( a_radius2 - a_shrink ), 0 ),
+                                 QSizeF( 2 * ( a_radius2 - a_shrink ),
+                                         2 * ( a_radius2 - a_shrink ) ) );
+    QRectF botRightArc = QRectF(
+                             botRight + QPointF(
+                                 -2 * ( a_radius3 - a_shrink ),
+                                 -2 * ( a_radius3 - a_shrink ) ),
+                             QSizeF( 2 * ( a_radius3 - a_shrink ),
+                                     2 * ( a_radius3 - a_shrink ) ) );
+    QRectF botLeftArc  = QRectF(
+                             botLeft  + QPointF(
+                                 0,
+                                 -2 * ( a_radius4 - a_shrink ) ),
+                             QSizeF( 2 * ( a_radius4 - a_shrink ),
+                                     2 * ( a_radius4 - a_shrink ) ) );
+
+    QPointF top1   = topLeft  + QPointF(
+                         a_radius1 - a_shrink,
+                         0 );
+    QPointF top2   = topRight + QPointF(
+                         -( a_radius2 - a_shrink ),
+                         0 );
+    QPointF right1 = topRight + QPointF(
+                         0,
+                         a_radius2  - a_shrink );
+    QPointF right2 = botRight + QPointF(
+                         0,
+                         -( a_radius3  - a_shrink ) );
+    QPointF bot1   = botRight + QPointF(
+                         -( a_radius3 - - a_shrink ),
+                         0 );
+    QPointF bot2   = botLeft  + QPointF(
+                         a_radius4 - - a_shrink,
+                         0 );
+    QPointF left1  = botLeft  + QPointF
+                     ( 0,
+                       -( a_radius4 - a_shrink ) );
+    QPointF left2  = topLeft  + QPointF(
+                         0,
+                         a_radius1 - a_shrink );
+
+    path.moveTo( top1 );
+    path.lineTo( top2 );
+    path.arcTo( topRightArc, 90, -90 );
+    path.lineTo( right1 );
+    path.lineTo( right2 );
+    path.arcTo( botRightArc, 0, -90 );
+    path.lineTo( bot1 );
+    path.lineTo( bot2 );
+    path.arcTo( botLeftArc, -90, -90 );
+    path.lineTo( left1 );
+    path.lineTo( left2 );
+    path.arcTo( topLeftArc, -180, -90 );
+    path.lineTo( top1 );
+    path.closeSubpath();
+
+    return path;
 }

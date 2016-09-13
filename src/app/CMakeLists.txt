@@ -8,6 +8,7 @@ add_executable(MyApp
 target_link_libraries(MyApp
     Qt5::Core
     Qt5::Qml
+    Qt5::Quick
     Qt5::Widgets)
 
 install(

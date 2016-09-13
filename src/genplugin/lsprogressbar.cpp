@@ -24,20 +24,23 @@ void LsProgressBar::initFinalImage()
 {
     qCDebug( LOG_LSPROGRESSBAR ) << "initFinalImage()";
 
-    m_imgFinalEmpty = QImage( 200 + 64, 32 + 64, QImage::Format_ARGB32 );
+    m_imgFinalEmpty = QImage( MARGIN + 4 * STDWIDTH + MARGIN,
+                              MARGIN + 1 * STDHEIGHT + MARGIN,
+                              QImage::Format_ARGB32 );
 }
 
 /**************************************************************************************************/
-void LsProgressBar::initOutline()
+void LsProgressBar::initOutlines()
 {
     qCDebug( LOG_LSPROGRESSBAR ) << "initOutline()";
 
-    m_outlinePath = QPainterPath();
-    m_outlinePath.addRoundedRect( QRectF( 32, 36, 200, 24 ), 8, 8 );
-}
-
-/**************************************************************************************************/
-void LsProgressBar::initControl()
-{
-    qCDebug( LOG_LSPROGRESSBAR ) << "initControl()";
+    m_outlinePath = getOutline( MARGIN + 0,
+                                MARGIN + 0,
+                                4 * STDWIDTH,
+                                1 * STDHEIGHT,
+                                0,
+                                STDHEIGHT / 4,
+                                STDHEIGHT / 4,
+                                STDHEIGHT / 4,
+                                STDHEIGHT / 4 );
 }

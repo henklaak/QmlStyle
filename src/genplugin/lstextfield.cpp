@@ -24,21 +24,24 @@ void LsTextField::initFinalImage()
 {
     qCDebug( LOG_LSTEXTFIELD ) << "initFinalImage()";
 
-    m_imgFinalEmpty = QImage( 214 + 64, 48 + 64, QImage::Format_ARGB32 );
+    m_imgFinalEmpty = QImage( MARGIN + 4 * STDWIDTH + MARGIN,
+                              MARGIN + 2 * STDHEIGHT + MARGIN,
+                              QImage::Format_ARGB32 );
 }
 
 /**************************************************************************************************/
-void LsTextField::initOutline()
+void LsTextField::initOutlines()
 {
     qCDebug( LOG_LSTEXTFIELD ) << "initOutline()";
 
-    m_outlinePath = QPainterPath();
-    m_outlinePath.addRoundedRect( QRectF( 32, 32, 214, 48 ), 8, 8 );
-}
-
-/**************************************************************************************************/
-void LsTextField::initControl()
-{
-    qCDebug( LOG_LSTEXTFIELD ) << "initControl()";
+    m_outlinePath = getOutline( MARGIN + 0,
+                                MARGIN + 0,
+                                4 * STDWIDTH,
+                                2 * STDHEIGHT,
+                                0,
+                                STDHEIGHT/4,
+                                STDHEIGHT/4,
+                                STDHEIGHT/4,
+                                STDHEIGHT/4);
 }
 

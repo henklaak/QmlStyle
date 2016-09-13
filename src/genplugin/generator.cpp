@@ -7,17 +7,13 @@
 #include <lstextfield.h>
 #include <lscombobox.h>
 #include <lsprogressbarindicator.h>
+#include <lstoolbutton.h>
+#include <lstoolbuttonleft.h>
+#include <lstoolbuttonright.h>
+#include <lstoolbuttonboth.h>
 
 int main( int a_argc, char *a_argv[] )
 {
-    {
-        LsProgressBarIndicator renderer;
-        renderer.render();
-    }
-    {
-        LsSliderIndicator renderer;
-        renderer.render();
-    }
     {
         LsButton renderer;
         renderer.render();
@@ -26,7 +22,6 @@ int main( int a_argc, char *a_argv[] )
         LsCheckBox renderer;
         renderer.render();
     }
-
     {
         LsRadioButton renderer;
         renderer.render();
@@ -36,7 +31,15 @@ int main( int a_argc, char *a_argv[] )
         renderer.render();
     }
     {
+        LsProgressBarIndicator renderer;
+        renderer.render();
+    }
+    {
         LsSlider renderer;
+        renderer.render();
+    }
+    {
+        LsSliderIndicator renderer;
         renderer.render();
     }
     {
@@ -47,5 +50,22 @@ int main( int a_argc, char *a_argv[] )
         LsComboBox renderer;
         renderer.render();
     }
+    {
+        LsToolButtonBoth renderer;
+        renderer.render();
+    }
+    {
+        LsToolButtonLeft renderer;
+        renderer.render();
+    }
+    {
+        LsToolButtonRight renderer;
+        renderer.render();
+    }
+    {
+        LsToolButton renderer;
+        renderer.render();
+    }
+
     return 0;
 }

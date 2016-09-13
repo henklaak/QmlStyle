@@ -9,6 +9,7 @@ project(QmlStyleLaaksoft)
 find_package(Qt5Core 5.7 REQUIRED)
 find_package(Qt5Gui 5.7 REQUIRED)
 find_package(Qt5Qml 5.7 REQUIRED)
+find_package(Qt5Quick 5.7 REQUIRED)
 find_package(Qt5Test 5.7 REQUIRED)
 find_package(Qt5Widgets 5.7 REQUIRED)
 

@@ -10,6 +10,10 @@ add_executable(Generator
     lsslider.cpp
     lssliderindicator.cpp
     lstextfield.cpp
+    lstoolbutton.cpp
+    lstoolbuttonboth.cpp
+    lstoolbuttonleft.cpp
+    lstoolbuttonright.cpp
     )
 
 target_link_libraries(Generator

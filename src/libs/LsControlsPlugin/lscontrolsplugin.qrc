@@ -44,6 +44,14 @@
         <file>Images/ProgressBar_enabled_pressed_unchecked.png</file>
         <file>Images/ProgressBar_enabled_unpressed_checked.png</file>
         <file>Images/ProgressBar_enabled_unpressed_unchecked.png</file>
+        <file>Images/ProgressBarIndicator_disabled_pressed_checked.png</file>
+        <file>Images/ProgressBarIndicator_disabled_pressed_unchecked.png</file>
+        <file>Images/ProgressBarIndicator_disabled_unpressed_checked.png</file>
+        <file>Images/ProgressBarIndicator_disabled_unpressed_unchecked.png</file>
+        <file>Images/ProgressBarIndicator_enabled_pressed_checked.png</file>
+        <file>Images/ProgressBarIndicator_enabled_pressed_unchecked.png</file>
+        <file>Images/ProgressBarIndicator_enabled_unpressed_checked.png</file>
+        <file>Images/ProgressBarIndicator_enabled_unpressed_unchecked.png</file>
         <file>Images/RadioButton_disabled_pressed_checked.png</file>
         <file>Images/RadioButton_disabled_pressed_unchecked.png</file>
         <file>Images/RadioButton_disabled_unpressed_checked.png</file>
@@ -60,14 +68,6 @@
         <file>Images/Slider_enabled_pressed_unchecked.png</file>
         <file>Images/Slider_enabled_unpressed_checked.png</file>
         <file>Images/Slider_enabled_unpressed_unchecked.png</file>
-        <file>Images/TextField_disabled_pressed_checked.png</file>
-        <file>Images/TextField_disabled_pressed_unchecked.png</file>
-        <file>Images/TextField_disabled_unpressed_checked.png</file>
-        <file>Images/TextField_disabled_unpressed_unchecked.png</file>
-        <file>Images/TextField_enabled_pressed_checked.png</file>
-        <file>Images/TextField_enabled_pressed_unchecked.png</file>
-        <file>Images/TextField_enabled_unpressed_checked.png</file>
-        <file>Images/TextField_enabled_unpressed_unchecked.png</file>
         <file>Images/SliderIndicator_disabled_pressed_checked.png</file>
         <file>Images/SliderIndicator_disabled_pressed_unchecked.png</file>
         <file>Images/SliderIndicator_disabled_unpressed_checked.png</file>
@@ -76,13 +76,45 @@
         <file>Images/SliderIndicator_enabled_pressed_unchecked.png</file>
         <file>Images/SliderIndicator_enabled_unpressed_checked.png</file>
         <file>Images/SliderIndicator_enabled_unpressed_unchecked.png</file>
-        <file>Images/ProgressBarIndicator_disabled_pressed_checked.png</file>
-        <file>Images/ProgressBarIndicator_disabled_pressed_unchecked.png</file>
-        <file>Images/ProgressBarIndicator_disabled_unpressed_checked.png</file>
-        <file>Images/ProgressBarIndicator_disabled_unpressed_unchecked.png</file>
-        <file>Images/ProgressBarIndicator_enabled_pressed_checked.png</file>
-        <file>Images/ProgressBarIndicator_enabled_pressed_unchecked.png</file>
-        <file>Images/ProgressBarIndicator_enabled_unpressed_checked.png</file>
-        <file>Images/ProgressBarIndicator_enabled_unpressed_unchecked.png</file>
+        <file>Images/TextField_disabled_pressed_checked.png</file>
+        <file>Images/TextField_disabled_pressed_unchecked.png</file>
+        <file>Images/TextField_disabled_unpressed_checked.png</file>
+        <file>Images/TextField_disabled_unpressed_unchecked.png</file>
+        <file>Images/TextField_enabled_pressed_checked.png</file>
+        <file>Images/TextField_enabled_pressed_unchecked.png</file>
+        <file>Images/TextField_enabled_unpressed_checked.png</file>
+        <file>Images/TextField_enabled_unpressed_unchecked.png</file>
+        <file>Images/ToolButton_disabled_pressed_checked.png</file>
+        <file>Images/ToolButton_disabled_pressed_unchecked.png</file>
+        <file>Images/ToolButton_disabled_unpressed_checked.png</file>
+        <file>Images/ToolButton_disabled_unpressed_unchecked.png</file>
+        <file>Images/ToolButton_enabled_pressed_checked.png</file>
+        <file>Images/ToolButton_enabled_pressed_unchecked.png</file>
+        <file>Images/ToolButton_enabled_unpressed_checked.png</file>
+        <file>Images/ToolButton_enabled_unpressed_unchecked.png</file>
+        <file>Images/ToolButtonBoth_disabled_pressed_checked.png</file>
+        <file>Images/ToolButtonBoth_disabled_pressed_unchecked.png</file>
+        <file>Images/ToolButtonBoth_disabled_unpressed_checked.png</file>
+        <file>Images/ToolButtonBoth_disabled_unpressed_unchecked.png</file>
+        <file>Images/ToolButtonBoth_enabled_pressed_checked.png</file>
+        <file>Images/ToolButtonBoth_enabled_pressed_unchecked.png</file>
+        <file>Images/ToolButtonBoth_enabled_unpressed_checked.png</file>
+        <file>Images/ToolButtonBoth_enabled_unpressed_unchecked.png</file>
+        <file>Images/ToolButtonLeft_disabled_pressed_checked.png</file>
+        <file>Images/ToolButtonLeft_disabled_pressed_unchecked.png</file>
+        <file>Images/ToolButtonLeft_disabled_unpressed_checked.png</file>
+        <file>Images/ToolButtonLeft_disabled_unpressed_unchecked.png</file>
+        <file>Images/ToolButtonLeft_enabled_pressed_checked.png</file>
+        <file>Images/ToolButtonLeft_enabled_pressed_unchecked.png</file>
+        <file>Images/ToolButtonLeft_enabled_unpressed_checked.png</file>
+        <file>Images/ToolButtonLeft_enabled_unpressed_unchecked.png</file>
+        <file>Images/ToolButtonRight_disabled_pressed_checked.png</file>
+        <file>Images/ToolButtonRight_disabled_pressed_unchecked.png</file>
+        <file>Images/ToolButtonRight_disabled_unpressed_checked.png</file>
+        <file>Images/ToolButtonRight_disabled_unpressed_unchecked.png</file>
+        <file>Images/ToolButtonRight_enabled_pressed_checked.png</file>
+        <file>Images/ToolButtonRight_enabled_pressed_unchecked.png</file>
+        <file>Images/ToolButtonRight_enabled_unpressed_checked.png</file>
+        <file>Images/ToolButtonRight_enabled_unpressed_unchecked.png</file>
     </qresource>
 </RCC>

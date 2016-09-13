@@ -24,20 +24,21 @@ void LsSlider::initFinalImage()
 {
     qCDebug( LOG_LSSLIDER ) << "initFinalImage()";
 
-    m_imgFinalEmpty = QImage( 200 + 64, 32 + 64, QImage::Format_ARGB32 );
-}
+    m_imgFinalEmpty = QImage( MARGIN + 4 * STDWIDTH + MARGIN,
+                              MARGIN + 1 * STDHEIGHT + MARGIN,
+                              QImage::Format_ARGB32 );}
 
 /**************************************************************************************************/
-void LsSlider::initOutline()
+void LsSlider::initOutlines()
 {
     qCDebug( LOG_LSSLIDER ) << "initOutline()";
 
-    m_outlinePath = QPainterPath();
-    m_outlinePath.addRoundedRect( QRectF( 32, 32, 200, 32 ), 16, 16 );
-}
-
-/**************************************************************************************************/
-void LsSlider::initControl()
-{
-    qCDebug( LOG_LSSLIDER ) << "initControl()";
-}
+    m_outlinePath = getOutline( MARGIN + 0,
+                                MARGIN + 0,
+                                4 * STDWIDTH,
+                                1 * STDHEIGHT,
+                                0,
+                                STDHEIGHT / 2,
+                                STDHEIGHT / 2,
+                                STDHEIGHT / 2,
+                                STDHEIGHT / 2 );}

@@ -13,6 +13,5 @@ public:
     virtual ~LsCheckBox();
 
     void initFinalImage() Q_DECL_OVERRIDE;
-    void initOutline() Q_DECL_OVERRIDE;
-    void initControl() Q_DECL_OVERRIDE;
+    void initOutlines() Q_DECL_OVERRIDE;
 };

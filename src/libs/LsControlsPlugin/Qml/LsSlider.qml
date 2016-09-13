@@ -18,10 +18,10 @@ Slider {
                 y: -32
                 width: parent.width + 64
                 height: parent.height + 64
-                source: ("qrc:/LsControls/Images/Slider_%1_%2_%3.png")
-                .arg(control.enabled ? "enabled" : "disabled")
-                .arg(control.pressed ? "pressed" : "unpressed")
-                .arg("unchecked")
+                source: (("qrc:/LsControls/Images/Slider_%1_%2_%3.png")
+                         .arg(control.enabled ? "enabled" : "disabled")
+                         .arg(control.pressed ? "pressed" : "unpressed")
+                         .arg("unchecked"))
 
                 border.left: 64
                 border.right: 64
@@ -37,12 +37,13 @@ Slider {
             Image {
                 x: -32
                 y: -32
-                source: ("qrc:/LsControls/Images/SliderIndicator_%1_%2_%3.png")
-                .arg(control.enabled ? "enabled" : "disabled")
-                .arg(control.pressed ? "pressed" : "unpressed")
-                .arg("unchecked")
+                source: (("qrc:/LsControls/Images/SliderIndicator_%1_%2_%3.png")
+                         .arg(control.enabled ? "enabled" : "disabled")
+                         .arg(control.pressed ? "pressed" : "unpressed")
+                         .arg("unchecked"))
             }
-            }
-            }
-            }
+
+        }
+    }
+}
 

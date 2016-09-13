@@ -24,25 +24,43 @@ void LsButton::initFinalImage()
 {
     qCDebug( LOG_LSBUTTON ) << "initFinalImage()";
 
-    m_imgFinalEmpty = QImage( 214 + 64, 64 + 64, QImage::Format_ARGB32 );
+    m_imgFinalEmpty = QImage( MARGIN + 4 * STDWIDTH + MARGIN,
+                              MARGIN + 2 * STDHEIGHT + MARGIN,
+                              QImage::Format_ARGB32 );
 }
 
 /**************************************************************************************************/
-void LsButton::initOutline()
+void LsButton::initOutlines()
 {
     qCDebug( LOG_LSBUTTON ) << "initOutline()";
 
-    m_outlinePath = QPainterPath();
-    m_outlinePath.addRoundedRect( QRectF( 32, 32, 214, 64 ), 32, 32 );
-}
+    m_outlinePath = getOutline( MARGIN + 0,
+                                MARGIN + 0,
+                                4 * STDWIDTH,
+                                2 * STDHEIGHT,
+                                0,
+                                STDHEIGHT,
+                                STDHEIGHT,
+                                STDHEIGHT,
+                                STDHEIGHT);
 
-/**************************************************************************************************/
-void LsButton::initControl()
-{
-    qCDebug( LOG_LSBUTTON ) << "initControl()";
-    m_controlPathOuter = QPainterPath();
-    m_controlPathOuter.addRoundedRect( QRectF( 34, 34, 210, 60 ), 30, 30 );
+    m_controlPathOuter = getOutline( MARGIN + 0,
+                                     MARGIN + 0,
+                                     4 * STDWIDTH,
+                                     2 * STDHEIGHT,
+                                     2,
+                                     STDHEIGHT,
+                                     STDHEIGHT,
+                                     STDHEIGHT,
+                                     STDHEIGHT);
 
-    m_controlPathInner = QPainterPath();
-    m_controlPathInner.addRoundedRect( QRectF( 37, 37, 204, 56 ), 27, 27 );
+    m_controlPathInner = getOutline( MARGIN + 0,
+                                     MARGIN + 0,
+                                     4 * STDWIDTH,
+                                     2 * STDHEIGHT,
+                                     4,
+                                     STDHEIGHT,
+                                     STDHEIGHT,
+                                     STDHEIGHT,
+                                     STDHEIGHT);
 }

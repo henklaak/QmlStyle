@@ -24,30 +24,43 @@ void LsRadioButton::initFinalImage()
 {
     qCDebug( LOG_LSRADIOBUTTON ) << "initFinalImage()";
 
-    m_imgFinalEmpty = QImage( 32 + 64, 32 + 64, QImage::Format_ARGB32 );
+    m_imgFinalEmpty = QImage( MARGIN + 1 * STDWIDTH + MARGIN,
+                              MARGIN + 1 * STDHEIGHT + MARGIN,
+                              QImage::Format_ARGB32 );
 }
 
 /**************************************************************************************************/
-void LsRadioButton::initOutline()
+void LsRadioButton::initOutlines()
 {
     qCDebug( LOG_LSRADIOBUTTON ) << "initOutline()";
 
-    m_outlinePath = QPainterPath();
-    m_outlinePath.addRoundedRect( QRectF( 32, 32, 32, 32 ), 16, 16 );
-}
+    m_outlinePath = getOutline( MARGIN + 0,
+                                MARGIN + 0,
+                                1 * STDWIDTH,
+                                1 * STDHEIGHT,
+                                0,
+                                STDHEIGHT/2,
+                                STDHEIGHT/2,
+                                STDHEIGHT/2,
+                                STDHEIGHT/2);
 
-/**************************************************************************************************/
-void LsRadioButton::initControl()
-{
-    qCDebug( LOG_LSRADIOBUTTON ) << "initControl()";
+    m_controlPathOuter = getOutline( MARGIN + 0,
+                                MARGIN + 0,
+                                1 * STDWIDTH,
+                                1 * STDHEIGHT,
+                                2,
+                                STDHEIGHT/2,
+                                STDHEIGHT/2,
+                                STDHEIGHT/2,
+                                STDHEIGHT/2);
 
-    m_controlPathOuter = QPainterPath();
-    m_controlPathOuter.addRoundedRect( QRectF( 34, 34, 28, 28 ), 14, 14 );
-
-    m_controlPathInner = QPainterPath();
-    m_controlPathInner.addRoundedRect( QRectF( 37, 37, 22, 22 ), 11, 11 );
-
-    //m_controlPathChecked = QPainterPath();
-    //m_controlPathChecked.addRoundedRect( QRectF( 38, 38, 20, 20 ), 10, 10 );
-
+    m_controlPathInner = getOutline( MARGIN + 0,
+                                MARGIN + 0,
+                                1 * STDWIDTH,
+                                1 * STDHEIGHT,
+                                4,
+                                STDHEIGHT/2,
+                                STDHEIGHT/2,
+                                STDHEIGHT/2,
+                                STDHEIGHT/2);
 }

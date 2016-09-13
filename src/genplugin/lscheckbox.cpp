@@ -24,31 +24,44 @@ void LsCheckBox::initFinalImage()
 {
     qCDebug( LOG_LSCHECKBOX ) << "initFinalImage()";
 
-    m_imgFinalEmpty = QImage( 32 + 64, 32 + 64, QImage::Format_ARGB32 );
+    m_imgFinalEmpty = QImage( MARGIN + 1 * STDWIDTH + MARGIN,
+                              MARGIN + 1 * STDHEIGHT + MARGIN,
+                              QImage::Format_ARGB32 );
 }
 
 /**************************************************************************************************/
-void LsCheckBox::initOutline()
+void LsCheckBox::initOutlines()
 {
     qCDebug( LOG_LSCHECKBOX ) << "initOutline()";
 
-    m_outlinePath = QPainterPath();
-    m_outlinePath.addRoundedRect( QRectF( 32, 32, 32, 32 ), 8, 8 );
-}
+    m_outlinePath = getOutline( MARGIN + 0,
+                                MARGIN + 0,
+                                1 * STDWIDTH,
+                                1 * STDHEIGHT,
+                                0,
+                                STDHEIGHT/4,
+                                STDHEIGHT/4,
+                                STDHEIGHT/4,
+                                STDHEIGHT/4);
 
-/**************************************************************************************************/
-void LsCheckBox::initControl()
-{
-    qCDebug( LOG_LSCHECKBOX ) << "initControl()";
+    m_controlPathOuter = getOutline( MARGIN + 0,
+                                MARGIN + 0,
+                                1 * STDWIDTH,
+                                1 * STDHEIGHT,
+                                2,
+                                STDHEIGHT/4,
+                                STDHEIGHT/4,
+                                STDHEIGHT/4,
+                                STDHEIGHT/4);
 
-    m_controlPathOuter = QPainterPath();
-    m_controlPathOuter.addRoundedRect( QRectF( 34, 34, 28, 28 ), 6, 6 );
-
-    m_controlPathInner = QPainterPath();
-    m_controlPathInner.addRoundedRect( QRectF( 37, 37, 22, 22 ), 4, 4 );
-
-    //m_controlPathChecked = QPainterPath();
-    //m_controlPathChecked.addRoundedRect( QRectF( 38, 38, 20, 20 ), 4, 4 );
-
+    m_controlPathInner = getOutline( MARGIN + 0,
+                                MARGIN + 0,
+                                1 * STDWIDTH,
+                                1 * STDHEIGHT,
+                                4,
+                                STDHEIGHT/4,
+                                STDHEIGHT/4,
+                                STDHEIGHT/4,
+                                STDHEIGHT/4);
 }
 

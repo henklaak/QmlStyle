@@ -5,7 +5,6 @@
 #include <QPainter>
 #include <QPen>
 
-
 int main( int argc, char *argv[] )
 {
     QGuiApplication app( argc, argv );
