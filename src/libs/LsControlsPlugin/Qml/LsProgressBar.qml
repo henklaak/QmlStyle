@@ -4,8 +4,8 @@ import QtQuick.Controls.Styles 1.4
 import LsControls 1.0
 
 ProgressBar {
-    implicitWidth: 240
-    implicitHeight: 32
+    implicitWidth: 4 * LsColors.stdwidth
+    implicitHeight: 1 * LsColors.stdheight
 
     style: ProgressBarStyle {
         background: Item {
@@ -14,42 +14,59 @@ ProgressBar {
 
             BorderImage {
                 visible: true
-                x: -32
-                y: -32
-                width: parent.width + 64
-                height: parent.height + 64
+                x: -LsColors.margin
+                y: -LsColors.margin
+                width:  LsColors.margin + 4 * LsColors.stdwidth + LsColors.margin
+                height: LsColors.margin + 1 * LsColors.stdheight + LsColors.margin
+
                 source: ("qrc:/LsControls/Images/ProgressBar_%1_%2_%3.png")
                 .arg(control.enabled ? "enabled" : "disabled")
                 .arg("unpressed")
                 .arg("unchecked")
 
-                border.left: 64
-                border.right: 64
-                border.top: 64
-                border.bottom: 64
+                border.left: LsColors.margin + LsColors.stdwidth/4
+                border.right: LsColors.margin + LsColors.stdwidth/4
+                border.top: LsColors.margin + LsColors.stdheight/4
+                border.bottom: LsColors.margin + LsColors.stdheight/4
+
+                Rectangle {
+                    visible: false
+                    anchors.fill: parent
+                    color: "#40ff0000"
+                }
             }
         }
 
         progress: Item {
-            anchors.margins: 0
             BorderImage {
                 property double perc: parent.width / control.width
 
-                x: -32
-                y: -32
-                height: parent.height+64
-                width: 64 + 240 * perc
+                x: -LsColors.margin
+                y: -LsColors.margin
+                width:  LsColors.margin + perc * 4 * LsColors.stdwidth + LsColors.margin
+                height: LsColors.margin + 1 * LsColors.stdheight + LsColors.margin
 
                 source: ("qrc:/LsControls/Images/ProgressBarIndicator_%1_%2_%3.png")
                 .arg("enabled")
                 .arg("unpressed")
                 .arg("unchecked")
 
-                border.left: 32 + Math.min(10,perc*100)
-                border.right: 32 + Math.min(10,perc*100)
-                border.top: 32 + Math.min(10,perc*100)
-                border.bottom: 32 + Math.min(10,perc*100)
+                border.left: LsColors.margin + Math.min(LsColors.stdwidth/4,perc*100)
+                border.right: LsColors.margin + Math.min(LsColors.stdwidth/4,perc*100)
+                border.top: LsColors.margin + Math.min(LsColors.stdheight/4,perc*100)
+                border.bottom: LsColors.margin + Math.min(LsColors.stdheight/4,perc*100)
+
+                Rectangle {
+                    visible: false
+                    anchors.fill: parent
+                    color: "#40ff0000"
+                }
             }
         }
+    }
+    Rectangle {
+        visible: false
+        anchors.fill: parent
+        color: "#40ff0000"
     }
 }

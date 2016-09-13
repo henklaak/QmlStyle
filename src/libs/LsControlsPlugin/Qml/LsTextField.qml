@@ -4,27 +4,35 @@ import QtQuick.Controls.Styles 1.4
 import LsControls 1.0
 
 TextField {
-    implicitWidth: 240
-    implicitHeight: 48
+    implicitWidth:  4 * LsColors.stdwidth
+    implicitHeight: 2 * LsColors.stdheight
 
     style: TextFieldStyle {
         background: Item {
             width: control.width
             height: control.height
             BorderImage {
-                x: -32
-                y: -32
-                width: parent.width + 64
-                height: parent.height + 64
+                x: -LsColors.margin
+                y: -LsColors.margin
+                width:  LsColors.margin + 4 * LsColors.stdwidth + LsColors.margin
+                height: LsColors.margin + 2 * LsColors.stdheight + LsColors.margin
+
                 source: ("qrc:/LsControls/Images/TextField_%1_%2_%3.png")
                 .arg(control.enabled ? "enabled" : "disabled")
                 .arg("unpressed")
                 .arg("unchecked")
 
-                border.left: 64
-                border.right: 64
-                border.top: 64
-                border.bottom: 64
+                border.left: LsColors.margin + LsColors.stdwidth/4
+                border.right: LsColors.margin + LsColors.stdwidth/4
+                border.top: LsColors.margin + LsColors.stdheight/4
+                border.bottom: LsColors.margin + LsColors.stdheight/4
+
+                Rectangle {
+                    visible: false
+                    anchors.fill: parent
+                    color: "#40ff0000"
+                }
+
             }
         }
         textColor: LsColors.textColor
@@ -33,6 +41,11 @@ TextField {
 //        font.family: LsColors.normalFontFamily
 //        font.pointSize: LsColors.normalFontPointSize
 //        font.bold: LsColors.normalFontBold
+    }
+    Rectangle {
+        visible: false
+        anchors.fill: parent
+        color: "#40ff0000"
     }
 }
 

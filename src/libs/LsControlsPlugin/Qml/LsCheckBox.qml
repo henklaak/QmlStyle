@@ -4,25 +4,39 @@ import QtQuick.Controls.Styles 1.4
 import LsControls 1.0
 
 CheckBox {
-    //implicitWidth: 240
-    implicitHeight: 32
+    implicitWidth: 1 * LsColors.stdwidth
+    implicitHeight: 1 * LsColors.stdheight
 
     style: CheckBoxStyle {
         background: Item {
             width: control.width
             height: control.height
-            Image {
-                x: -32
-                y: -32
+            BorderImage {
+                x: -LsColors.margin
+                y: -LsColors.margin
+                width:  LsColors.margin + 1 * LsColors.stdwidth + LsColors.margin
+                height: LsColors.margin + 1 * LsColors.stdheight + LsColors.margin
+
                 source: ("qrc:/LsControls/Images/CheckBox_%1_%2_%3.png")
                 .arg(control.enabled ? "enabled" : "disabled")
                 .arg(control.pressed ? "pressed" : "unpressed")
                 .arg(control.checked ? "checked" : "unchecked")
+
+                border.left: LsColors.margin + LsColors.stdwidth/4
+                border.right: LsColors.margin + LsColors.stdwidth/4
+                border.top: LsColors.margin + LsColors.stdheight/4
+                border.bottom: LsColors.margin + LsColors.stdheight/4
+
+                Rectangle {
+                    visible: false
+                    anchors.fill: parent
+                    color: "#40ff0000"
+                }
             }
         }
         indicator:  Item {
-            width: 32
-            height: 32
+            width: LsColors.stdwidth
+            height: LsColors.stdheight
         }
         spacing: 5
         label: Text {
@@ -30,6 +44,11 @@ CheckBox {
             color: LsColors.textColor
             font: LsColors.normalFont
         }
+    }
+    Rectangle {
+        visible: false
+        anchors.fill: parent
+        color: "#40ff0000"
     }
 }
 

@@ -680,62 +680,32 @@ QPainterPath LsControls::getOutline( int a_x,
 
     QPainterPath path;
 
-    QPointF topLeft(
-        a_x + a_shrink,
-        a_y + a_shrink );
-    QPointF topRight(
-        a_x + a_width - a_shrink,
-        a_y + a_shrink );
-    QPointF botLeft(
-        a_x + a_shrink,
-        a_y + a_height - a_shrink );
-    QPointF botRight(
-        a_x + a_width - a_shrink,
-        a_y + a_height - a_shrink );
+    QPointF topLeft( a_x + a_shrink, a_y + a_shrink );
+    QPointF topRight( a_x + a_width - a_shrink, a_y + a_shrink );
+    QPointF botLeft( a_x + a_shrink, a_y + a_height - a_shrink );
+    QPointF botRight( a_x + a_width - a_shrink, a_y + a_height - a_shrink );
 
-    QRectF topLeftArc  = QRectF( topLeft  + QPointF( 0, 0 ),
-                                 QSizeF( 2 * ( a_radius1 - a_shrink ),
-                                         2 * ( a_radius1 - a_shrink ) ) );
-    QRectF topRightArc = QRectF( topRight + QPointF( -2 * ( a_radius2 - a_shrink ), 0 ),
-                                 QSizeF( 2 * ( a_radius2 - a_shrink ),
-                                         2 * ( a_radius2 - a_shrink ) ) );
+    QRectF topLeftArc  = QRectF(
+                             topLeft  + QPointF( 0, 0 ),
+                             QSizeF( 2 * ( a_radius1 - a_shrink ), 2 * ( a_radius1 - a_shrink ) ) );
+    QRectF topRightArc = QRectF(
+                             topRight + QPointF( -2 * ( a_radius2 - a_shrink ), 0 ),
+                             QSizeF( 2 * ( a_radius2 - a_shrink ), 2 * ( a_radius2 - a_shrink ) ) );
     QRectF botRightArc = QRectF(
-                             botRight + QPointF(
-                                 -2 * ( a_radius3 - a_shrink ),
-                                 -2 * ( a_radius3 - a_shrink ) ),
-                             QSizeF( 2 * ( a_radius3 - a_shrink ),
-                                     2 * ( a_radius3 - a_shrink ) ) );
+                             botRight + QPointF( -2 * ( a_radius3 - a_shrink ), -2 * ( a_radius3 - a_shrink ) ),
+                             QSizeF( 2 * ( a_radius3 - a_shrink ), 2 * ( a_radius3 - a_shrink ) ) );
     QRectF botLeftArc  = QRectF(
-                             botLeft  + QPointF(
-                                 0,
-                                 -2 * ( a_radius4 - a_shrink ) ),
-                             QSizeF( 2 * ( a_radius4 - a_shrink ),
-                                     2 * ( a_radius4 - a_shrink ) ) );
+                             botLeft  + QPointF( 0, -2 * ( a_radius4 - a_shrink ) ),
+                             QSizeF( 2 * ( a_radius4 - a_shrink ), 2 * ( a_radius4 - a_shrink ) ) );
 
-    QPointF top1   = topLeft  + QPointF(
-                         a_radius1 - a_shrink,
-                         0 );
-    QPointF top2   = topRight + QPointF(
-                         -( a_radius2 - a_shrink ),
-                         0 );
-    QPointF right1 = topRight + QPointF(
-                         0,
-                         a_radius2  - a_shrink );
-    QPointF right2 = botRight + QPointF(
-                         0,
-                         -( a_radius3  - a_shrink ) );
-    QPointF bot1   = botRight + QPointF(
-                         -( a_radius3 - - a_shrink ),
-                         0 );
-    QPointF bot2   = botLeft  + QPointF(
-                         a_radius4 - - a_shrink,
-                         0 );
-    QPointF left1  = botLeft  + QPointF
-                     ( 0,
-                       -( a_radius4 - a_shrink ) );
-    QPointF left2  = topLeft  + QPointF(
-                         0,
-                         a_radius1 - a_shrink );
+    QPointF top1   = topLeft  + QPointF( ( a_radius1 - a_shrink ), 0 );
+    QPointF top2   = topRight + QPointF( -( a_radius2 - a_shrink ), 0 );
+    QPointF right1 = topRight + QPointF( 0, ( a_radius2  - a_shrink ) );
+    QPointF right2 = botRight + QPointF( 0, -( a_radius3  - a_shrink ) );
+    QPointF bot1   = botRight + QPointF( -( a_radius3 - a_shrink ), 0 );
+    QPointF bot2   = botLeft  + QPointF( ( a_radius4 - a_shrink ), 0 );
+    QPointF left1  = botLeft  + QPointF( 0, -( a_radius4 - a_shrink ) );
+    QPointF left2  = topLeft  + QPointF( 0, ( a_radius1 - a_shrink ) );
 
     path.moveTo( top1 );
     path.lineTo( top2 );

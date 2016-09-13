@@ -4,46 +4,68 @@ import QtQuick.Controls.Styles 1.4
 import LsControls 1.0
 
 Slider {
-    implicitWidth: 240
-    implicitHeight: 32
+    implicitWidth:  4 * LsColors.stdwidth
+    implicitHeight: 1 * LsColors.stdheight
 
     style: SliderStyle {
         groove: Item {
             width: control.width
             height: control.height
-
             BorderImage {
-                visible: true
-                x: -32
-                y: -32
-                width: parent.width + 64
-                height: parent.height + 64
+                x: -LsColors.margin
+                y: -LsColors.margin
+                width:  LsColors.margin + 4 * LsColors.stdwidth + LsColors.margin
+                height: LsColors.margin + 1 * LsColors.stdheight + LsColors.margin
                 source: (("qrc:/LsControls/Images/Slider_%1_%2_%3.png")
                          .arg(control.enabled ? "enabled" : "disabled")
                          .arg(control.pressed ? "pressed" : "unpressed")
                          .arg("unchecked"))
 
-                border.left: 64
-                border.right: 64
-                border.top: 64
-                border.bottom: 64
+                border.left:   LsColors.margin + LsColors.stdwidth/4
+                border.right:  LsColors.margin + LsColors.stdwidth/4
+                border.top:    LsColors.margin + LsColors.stdheight/4
+                border.bottom: LsColors.margin + LsColors.stdheight/4
+
+                Rectangle {
+                    visible: false
+                    anchors.fill: parent
+                    color: "#40ff0000"
+                }
             }
         }
         handle: Item {
             anchors.centerIn: parent
-            implicitWidth: 32
-            implicitHeight: 32
+            implicitWidth: LsColors.stdwidth
+            implicitHeight: LsColors.stdheight
 
-            Image {
-                x: -32
-                y: -32
+            BorderImage {
+                x: -LsColors.margin
+                y: -LsColors.margin
+                width:  LsColors.margin + 4 * LsColors.stdwidth + LsColors.margin
+                height: LsColors.margin + 1 * LsColors.stdheight + LsColors.margin
                 source: (("qrc:/LsControls/Images/SliderIndicator_%1_%2_%3.png")
                          .arg(control.enabled ? "enabled" : "disabled")
                          .arg(control.pressed ? "pressed" : "unpressed")
                          .arg("unchecked"))
+
+                border.left: LsColors.margin + LsColors.stdwidth/4
+                border.right: LsColors.margin + LsColors.stdwidth/4
+                border.top: LsColors.margin + LsColors.stdheight/4
+                border.bottom: LsColors.margin + LsColors.stdheight/4
+
+                Rectangle {
+                    visible: false
+                    anchors.fill: parent
+                    color: "#40ff0000"
+                }
             }
 
         }
+    }
+    Rectangle {
+        visible: false
+        anchors.fill: parent
+        color: "#40ff0000"
     }
 }
 

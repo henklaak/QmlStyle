@@ -24,7 +24,9 @@ void LsComboBox::initFinalImage()
 {
     qCDebug( LOG_LSCOMBOBOX ) << "initFinalImage()";
 
-    m_imgFinalEmpty = QImage( 214 + 64, 48 + 64, QImage::Format_ARGB32 );
+    m_imgFinalEmpty = QImage( MARGIN + 4 * STDWIDTH + MARGIN,
+                              MARGIN + 2 * STDHEIGHT + MARGIN,
+                              QImage::Format_ARGB32 );
 }
 
 /**************************************************************************************************/
@@ -32,14 +34,34 @@ void LsComboBox::initOutlines()
 {
     qCDebug( LOG_LSCOMBOBOX ) << "initOutline()";
 
-    m_outlinePath = QPainterPath();
-    m_outlinePath.addRoundedRect( QRectF( 32, 32, 214, 48 ), 8, 8 );
+    m_outlinePath = getOutline( MARGIN + 0,
+                                MARGIN + 0,
+                                4 * STDWIDTH,
+                                2 * STDHEIGHT,
+                                0,
+                                STDHEIGHT/4,
+                                STDHEIGHT/4,
+                                STDHEIGHT/4,
+                                STDHEIGHT/4);
 
-    m_controlPathOuter = QPainterPath();
-    m_controlPathOuter.addRoundedRect( QRectF( 34, 34, 210, 44 ), 6, 6 );
+    m_controlPathOuter = getOutline( MARGIN + 0,
+                                     MARGIN + 0,
+                                     4 * STDWIDTH,
+                                     2 * STDHEIGHT,
+                                     2,
+                                     STDHEIGHT/4,
+                                     STDHEIGHT/4,
+                                     STDHEIGHT/4,
+                                     STDHEIGHT/4);
 
-    m_controlPathInner = QPainterPath();
-    m_controlPathInner.addRoundedRect( QRectF( 37, 37, 204, 38 ), 3, 3 );
-
+    m_controlPathInner = getOutline( MARGIN + 0,
+                                     MARGIN + 0,
+                                     4 * STDWIDTH,
+                                     2 * STDHEIGHT,
+                                     4,
+                                     STDHEIGHT/4,
+                                     STDHEIGHT/4,
+                                     STDHEIGHT/4,
+                                     STDHEIGHT/4);
 }
 
