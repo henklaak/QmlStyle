@@ -6,7 +6,7 @@
 
 Q_LOGGING_CATEGORY( LOG_LSCONTROLS, "LsControls", QtInfoMsg )
 
-const int LsControls::MARGIN    = 32;
+const int LsControls::MARGIN    = 16;
 const int LsControls::STDHEIGHT = 32;
 const int LsControls::STDWIDTH  = 32;
 

@@ -18,7 +18,7 @@ QtObject {
 
     readonly property font normalFont: Qt.font({family: "Helvetica", pointSize: 14});
 
-    readonly property int margin: 32
+    readonly property int margin: 16
     readonly property int stdwidth: 32
     readonly property int stdheight: 32
 }
