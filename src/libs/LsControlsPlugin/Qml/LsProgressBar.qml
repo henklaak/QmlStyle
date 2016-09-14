@@ -4,8 +4,8 @@ import QtQuick.Controls.Styles 1.4
 import LsControls 1.0
 
 ProgressBar {
-    implicitWidth: 4 * LsColors.stdwidth
-    implicitHeight: 1 * LsColors.stdheight
+    implicitWidth: 8 * LsColors.stdwidth
+    implicitHeight: 2 * LsColors.stdheight
 
     style: ProgressBarStyle {
         background: Item {
@@ -16,8 +16,8 @@ ProgressBar {
                 visible: true
                 x: -LsColors.margin
                 y: -LsColors.margin
-                width:  LsColors.margin + 4 * LsColors.stdwidth + LsColors.margin
-                height: LsColors.margin + 1 * LsColors.stdheight + LsColors.margin
+                width:  LsColors.margin + 8 * LsColors.stdwidth + LsColors.margin
+                height: LsColors.margin + 2 * LsColors.stdheight + LsColors.margin
 
                 source: ("qrc:/LsControls/Images/ProgressBar_%1_%2_%3.png")
                 .arg(control.enabled ? "enabled" : "disabled")
@@ -43,8 +43,8 @@ ProgressBar {
 
                 x: -LsColors.margin
                 y: -LsColors.margin
-                width:  LsColors.margin + perc * 4 * LsColors.stdwidth + LsColors.margin
-                height: LsColors.margin + 1 * LsColors.stdheight + LsColors.margin
+                width:  LsColors.margin + perc * 8 * LsColors.stdwidth + LsColors.margin
+                height: LsColors.margin + 2 * LsColors.stdheight + LsColors.margin
 
                 source: ("qrc:/LsControls/Images/ProgressBarIndicator_%1_%2_%3.png")
                 .arg("enabled")

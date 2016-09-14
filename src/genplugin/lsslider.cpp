@@ -24,8 +24,8 @@ void LsSlider::initFinalImage()
 {
     qCDebug( LOG_LSSLIDER ) << "initFinalImage()";
 
-    m_imgFinalEmpty = QImage( MARGIN + 4 * STDWIDTH + MARGIN,
-                              MARGIN + 1 * STDHEIGHT + MARGIN,
+    m_imgFinalEmpty = QImage( MARGIN + 8 * STDWIDTH + MARGIN,
+                              MARGIN + 2 * STDHEIGHT + MARGIN,
                               QImage::Format_ARGB32 );}
 
 /**************************************************************************************************/
@@ -35,10 +35,10 @@ void LsSlider::initOutlines()
 
     m_outlinePath = getOutline( MARGIN + 0,
                                 MARGIN + 0,
-                                4 * STDWIDTH,
-                                1 * STDHEIGHT,
+                                8 * STDWIDTH,
+                                2 * STDHEIGHT,
                                 0,
-                                STDHEIGHT / 2,
-                                STDHEIGHT / 2,
-                                STDHEIGHT / 2,
-                                STDHEIGHT / 2 );}
+                                STDHEIGHT,
+                                STDHEIGHT,
+                                STDHEIGHT,
+                                STDHEIGHT );}

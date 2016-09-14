@@ -4,7 +4,7 @@ import QtQuick.Controls.Styles 1.4
 import LsControls 1.0
 
 Text {
-    implicitWidth: 4 * LsColors.stdwidth
+    implicitWidth: 8 * LsColors.stdwidth
     implicitHeight: 2 * LsColors.stdheight
 
     font: LsColors.normalFont

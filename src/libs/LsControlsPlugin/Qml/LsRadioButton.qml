@@ -4,16 +4,16 @@ import QtQuick.Controls.Styles 1.4
 import LsControls 1.0
 
 RadioButton {
-    implicitWidth:  1 * LsColors.stdwidth
-    implicitHeight: 1 * LsColors.stdheight
+    implicitWidth:  2 * LsColors.stdwidth
+    implicitHeight: 2 * LsColors.stdheight
 
     style: RadioButtonStyle {
         background:  Item {
             BorderImage {
                 x: -LsColors.margin
                 y: -LsColors.margin
-                width:  LsColors.margin + 1 * LsColors.stdwidth + LsColors.margin
-                height: LsColors.margin + 1 * LsColors.stdheight + LsColors.margin
+                width:  LsColors.margin + 2 * LsColors.stdwidth + LsColors.margin
+                height: LsColors.margin + 2 * LsColors.stdheight + LsColors.margin
                 source: ("qrc:/LsControls/Images/RadioButton_%1_%2_%3.png")
                 .arg(control.enabled ? "enabled" : "disabled")
                 .arg(control.pressed ? "pressed" : "unpressed")
@@ -32,8 +32,8 @@ RadioButton {
             }
         }
         indicator:  Item {
-            width: LsColors.stdwidth
-            height: LsColors.stdheight
+            width: 2 * LsColors.stdwidth
+            height: 2 * LsColors.stdheight
         }
         spacing: 5
         label: Text {

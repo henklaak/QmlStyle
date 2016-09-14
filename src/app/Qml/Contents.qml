@@ -84,7 +84,8 @@ Item {
 
         LsButton {
             id: button3
-            text: "Can't touch me"
+            text: "Can't touch"
+            width: 600
             checkable: true
             enabled: false
         }

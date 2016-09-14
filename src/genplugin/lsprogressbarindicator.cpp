@@ -24,7 +24,7 @@ void LsProgressBarIndicator::initFinalImage()
 {
     qCDebug( LOG_LSPROGRESSBARINDICATOR ) << "initFinalImage()";
 
-    m_imgFinalEmpty = QImage( MARGIN + 4 * STDWIDTH + MARGIN,
+    m_imgFinalEmpty = QImage( MARGIN + 8 * STDWIDTH + MARGIN,
                               MARGIN + 1 * STDHEIGHT + MARGIN,
                               QImage::Format_ARGB32 );
 }
@@ -36,7 +36,7 @@ void LsProgressBarIndicator::initOutlines()
 
     m_controlPathOuter = getOutline( MARGIN + 0,
                                 MARGIN + 0,
-                                4 * STDWIDTH,
+                                8 * STDWIDTH,
                                 1 * STDHEIGHT,
                                 2,
                                 STDHEIGHT / 4,
@@ -45,7 +45,7 @@ void LsProgressBarIndicator::initOutlines()
                                 STDHEIGHT / 4 );
     m_controlPathInner = getOutline( MARGIN + 0,
                                 MARGIN + 0,
-                                4 * STDWIDTH,
+                                8 * STDWIDTH,
                                 1 * STDHEIGHT,
                                 4,
                                 STDHEIGHT / 4,

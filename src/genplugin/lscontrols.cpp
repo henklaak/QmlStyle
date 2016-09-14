@@ -7,8 +7,8 @@
 Q_LOGGING_CATEGORY( LOG_LSCONTROLS, "LsControls", QtInfoMsg )
 
 const int LsControls::MARGIN    = 16;
-const int LsControls::STDHEIGHT = 32;
-const int LsControls::STDWIDTH  = 32;
+const int LsControls::STDHEIGHT = 16;
+const int LsControls::STDWIDTH  = 16;
 
 const QColor QCOLOR_WHITE = QColor( 255, 255, 255, 255 );
 const QColor QCOLOR_BLACK = QColor( 0,   0,   0, 255 );
@@ -23,20 +23,20 @@ const double BLUR_OUTLINE_HIGHLIGHT = 4;
 const double BLUR_OUTLINE_SHADOW = 8;
 const double BLUR_OUTLINE_OCCLUSION = 8;
 
-const QColor QCOLOR_CONTROL_ENABLED = QColor( 253, 204, 102, 200 );
+const QColor QCOLOR_CONTROL_ENABLED = QColor( 64, 99, 164, 200 );
 const QColor QCOLOR_CONTROL_ENABLED_HIGHLIGHT = QColor( 255, 255, 255, 255 );
 const QColor QCOLOR_CONTROL_ENABLED_SHADOW = QColor( 0, 0, 0, 64 );
 const double BLUR_CONTROL_ENABLED_HIGHLIGHT = 9;
 const double BLUR_CONTROL_ENABLED_SHADOW = 12;
 
-const QColor QCOLOR_CONTROL_PRESSED = QColor( 253, 204, 102, 160 );
+const QColor QCOLOR_CONTROL_PRESSED = QColor( 64, 99, 164, 160 );
 const QColor QCOLOR_CONTROL_PRESSED_HIGHLIGHT = QColor( 255, 255, 255, 64 );
 const QColor QCOLOR_CONTROL_PRESSED_SHADOW = QColor( 0, 0, 0, 32 );
 const double BLUR_CONTROL_PRESSED_HIGHLIGHT = 5;
 const double BLUR_CONTROL_PRESSED_SHADOW = 5;
 
-const QColor QCOLOR_CONTROL_CHECKED_TRANS = QColor( 255, 0, 0, 0 );
-const QColor QCOLOR_CONTROL_CHECKED = QColor( 255, 0, 0, 128 );
+const QColor QCOLOR_CONTROL_CHECKED_TRANS = QColor( 129, 218, 237, 0 );
+const QColor QCOLOR_CONTROL_CHECKED = QColor( 129, 218, 237, 128 );
 const int WIDTH_CONTROL_CHECKED_BACK = 4;
 const int BLUR_CONTROL_CHECKED_BACK = 5;
 const int BLUR_CONTROL_CHECKED = 1;

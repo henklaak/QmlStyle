@@ -9,11 +9,15 @@ ApplicationWindow {
     height: 800
     visible: true
 
-    Image {
+    Rectangle {
         anchors.fill: parent
-        source: "qrc:/LsControls/Images/backgroundtile.png"
-        fillMode: Image.Tile
+        color: "#334f83"
     }
+//    Image {
+//        anchors.fill: parent
+//        source: "qrc:/LsControls/Images/backgroundtile.png"
+//        fillMode: Image.Tile
+//    }
 
     Contents {
         anchors.fill: parent
@@ -23,7 +27,7 @@ ApplicationWindow {
         anchors.fill: parent
         gradient: Gradient {
             GradientStop { position: 0.0; color: "#00000000" }
-            GradientStop { position: 1.0; color: "#20000000" }
+            GradientStop { position: 1.0; color: "#40000000" }
         }
     }
 }

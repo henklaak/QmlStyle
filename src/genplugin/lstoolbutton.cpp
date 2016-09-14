@@ -24,8 +24,8 @@ void LsToolButton::initFinalImage()
 {
     qCDebug( LOG_LSTOOLBUTTON ) << "initFinalImage()";
 
-    m_imgFinalEmpty = QImage( MARGIN + 4 * STDWIDTH + MARGIN,
-                              MARGIN + 2 * STDHEIGHT + MARGIN,
+    m_imgFinalEmpty = QImage( MARGIN + 8 * STDWIDTH + MARGIN,
+                              MARGIN + 3 * STDHEIGHT + MARGIN,
                               QImage::Format_ARGB32 );
 }
 
@@ -36,8 +36,8 @@ void LsToolButton::initOutlines()
 
     m_outlinePath = getOutline( MARGIN + 0,
                                 MARGIN + 0,
-                                4 * STDWIDTH,
-                                2 * STDHEIGHT,
+                                8 * STDWIDTH,
+                                3 * STDHEIGHT,
                                 0,
                                 0,
                                 0,
@@ -46,8 +46,8 @@ void LsToolButton::initOutlines()
 
     m_controlPathOuter = getOutline( MARGIN + 0,
                                      MARGIN + 0,
-                                     4 * STDWIDTH,
-                                     2 * STDHEIGHT,
+                                     8 * STDWIDTH,
+                                     3 * STDHEIGHT,
                                      2,
                                      0,
                                      0,
@@ -56,8 +56,8 @@ void LsToolButton::initOutlines()
 
     m_controlPathInner = getOutline( MARGIN + 0,
                                      MARGIN + 0,
-                                     4 * STDWIDTH,
-                                     2 * STDHEIGHT,
+                                     8 * STDWIDTH,
+                                     3 * STDHEIGHT,
                                      4,
                                      0,
                                      0,

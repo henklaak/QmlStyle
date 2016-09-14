@@ -4,8 +4,8 @@ import QtQuick.Controls.Styles 1.4
 import LsControls 1.0
 
 TextField {
-    implicitWidth:  4 * LsColors.stdwidth
-    implicitHeight: 2 * LsColors.stdheight
+    implicitWidth:  8 * LsColors.stdwidth
+    implicitHeight: 3 * LsColors.stdheight
 
     style: TextFieldStyle {
         background: Item {
@@ -14,8 +14,8 @@ TextField {
             BorderImage {
                 x: -LsColors.margin
                 y: -LsColors.margin
-                width:  LsColors.margin + 4 * LsColors.stdwidth + LsColors.margin
-                height: LsColors.margin + 2 * LsColors.stdheight + LsColors.margin
+                width:  LsColors.margin + 8 * LsColors.stdwidth + LsColors.margin
+                height: LsColors.margin + 3 * LsColors.stdheight + LsColors.margin
 
                 source: ("qrc:/LsControls/Images/TextField_%1_%2_%3.png")
                 .arg(control.enabled ? "enabled" : "disabled")

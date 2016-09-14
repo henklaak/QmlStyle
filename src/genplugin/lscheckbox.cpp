@@ -24,8 +24,8 @@ void LsCheckBox::initFinalImage()
 {
     qCDebug( LOG_LSCHECKBOX ) << "initFinalImage()";
 
-    m_imgFinalEmpty = QImage( MARGIN + 1 * STDWIDTH + MARGIN,
-                              MARGIN + 1 * STDHEIGHT + MARGIN,
+    m_imgFinalEmpty = QImage( MARGIN + 2 * STDWIDTH + MARGIN,
+                              MARGIN + 2 * STDHEIGHT + MARGIN,
                               QImage::Format_ARGB32 );
 }
 
@@ -36,8 +36,8 @@ void LsCheckBox::initOutlines()
 
     m_outlinePath = getOutline( MARGIN + 0,
                                 MARGIN + 0,
-                                1 * STDWIDTH,
-                                1 * STDHEIGHT,
+                                2 * STDWIDTH,
+                                2 * STDHEIGHT,
                                 0,
                                 STDHEIGHT/4,
                                 STDHEIGHT/4,
@@ -46,8 +46,8 @@ void LsCheckBox::initOutlines()
 
     m_controlPathOuter = getOutline( MARGIN + 0,
                                 MARGIN + 0,
-                                1 * STDWIDTH,
-                                1 * STDHEIGHT,
+                                2 * STDWIDTH,
+                                2 * STDHEIGHT,
                                 2,
                                 STDHEIGHT/4,
                                 STDHEIGHT/4,
@@ -56,8 +56,8 @@ void LsCheckBox::initOutlines()
 
     m_controlPathInner = getOutline( MARGIN + 0,
                                 MARGIN + 0,
-                                1 * STDWIDTH,
-                                1 * STDHEIGHT,
+                                2 * STDWIDTH,
+                                2 * STDHEIGHT,
                                 4,
                                 STDHEIGHT/4,
                                 STDHEIGHT/4,
