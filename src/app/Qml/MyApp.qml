@@ -5,7 +5,7 @@ import QtQuick.Controls.Styles 1.4
 import QtGraphicalEffects 1.0
 
 ApplicationWindow {
-    width: 800
+    width: 200
     height: 800
     visible: true
 
@@ -23,11 +23,11 @@ ApplicationWindow {
         anchors.fill: parent
         anchors.margins: 20
     }
-    RadialGradient {
-        anchors.fill: parent
-        gradient: Gradient {
-            GradientStop { position: 0.0; color: "#00000000" }
-            GradientStop { position: 1.0; color: "#40000000" }
-        }
-    }
+//    RadialGradient {
+//        anchors.fill: parent
+//        gradient: Gradient {
+//            GradientStop { position: 0.0; color: "#00000000" }
+//            GradientStop { position: 1.0; color: "#40000000" }
+//        }
+//    }
 }

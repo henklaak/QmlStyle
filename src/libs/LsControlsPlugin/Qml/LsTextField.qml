@@ -14,18 +14,18 @@ TextField {
             BorderImage {
                 x: -LsColors.margin
                 y: -LsColors.margin
-                width:  LsColors.margin + 8 * LsColors.stdwidth + LsColors.margin
-                height: LsColors.margin + 3 * LsColors.stdheight + LsColors.margin
+                width:  LsColors.margin + control.width + LsColors.margin
+                height: LsColors.margin + control.height + LsColors.margin
 
                 source: ("qrc:/LsControls/Images/TextField_%1_%2_%3.png")
                 .arg(control.enabled ? "enabled" : "disabled")
                 .arg("unpressed")
                 .arg("unchecked")
 
-                border.left: LsColors.margin + LsColors.stdwidth/4
-                border.right: LsColors.margin + LsColors.stdwidth/4
-                border.top: LsColors.margin + LsColors.stdheight/4
-                border.bottom: LsColors.margin + LsColors.stdheight/4
+                border.left: LsColors.margin + LsColors.stdwidth
+                border.right: LsColors.margin + LsColors.stdwidth
+                border.top: LsColors.margin + LsColors.stdheight
+                border.bottom: LsColors.margin + LsColors.stdheight
 
                 Rectangle {
                     visible: false

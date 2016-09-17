@@ -22,10 +22,10 @@ CheckBox {
                 .arg(control.pressed ? "pressed" : "unpressed")
                 .arg(control.checked ? "checked" : "unchecked")
 
-                border.left: LsColors.margin + LsColors.stdwidth/4
-                border.right: LsColors.margin + LsColors.stdwidth/4
-                border.top: LsColors.margin + LsColors.stdheight/4
-                border.bottom: LsColors.margin + LsColors.stdheight/4
+                border.left: LsColors.margin + LsColors.stdwidth
+                border.right: LsColors.margin + LsColors.stdwidth
+                border.top: LsColors.margin + LsColors.stdheight
+                border.bottom: LsColors.margin + LsColors.stdheight
 
                 Rectangle {
                     visible: false
