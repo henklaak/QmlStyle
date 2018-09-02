@@ -22,10 +22,10 @@ Button {
                 .arg(control.pressed ? "pressed" : "unpressed")
                 .arg(control.checked ? "checked" : "unchecked")
 
-                border.left: LsColors.margin + LsColors.stdwidth*1.5
-                border.right: LsColors.margin + LsColors.stdwidth*1.5
-                border.top: LsColors.margin + LsColors.stdheight*1.5
-                border.bottom: LsColors.margin + LsColors.stdheight*1.5
+                border.left: LsColors.margin + LsColors.stdwidth
+                border.right: LsColors.margin + LsColors.stdwidth
+                border.top: LsColors.margin + LsColors.stdheight
+                border.bottom: LsColors.margin + LsColors.stdheight
 
                 Rectangle {
                     visible: false

@@ -39,28 +39,28 @@ void LsButton::initOutlines()
                                 8 * STDWIDTH,
                                 3 * STDHEIGHT,
                                 0,
-                                STDHEIGHT*1.5,
-                                STDHEIGHT*1.5,
-                                STDHEIGHT*1.5,
-                                STDHEIGHT*1.5);
+                                STDHEIGHT,
+                                STDHEIGHT,
+                                STDHEIGHT,
+                                STDHEIGHT);
 
     m_controlPathOuter = getOutline( MARGIN + 0,
                                      MARGIN + 0,
                                      8 * STDWIDTH,
                                      3 * STDHEIGHT,
                                      2,
-                                     STDHEIGHT*1.5,
-                                     STDHEIGHT*1.5,
-                                     STDHEIGHT*1.5,
-                                     STDHEIGHT*1.5);
+                                     STDHEIGHT,
+                                     STDHEIGHT,
+                                     STDHEIGHT,
+                                     STDHEIGHT);
 
     m_controlPathInner = getOutline( MARGIN + 0,
                                      MARGIN + 0,
                                      8 * STDWIDTH,
                                      3 * STDHEIGHT,
                                      4,
-                                     STDHEIGHT*1.5,
-                                     STDHEIGHT*1.5,
-                                     STDHEIGHT*1.5,
-                                     STDHEIGHT*1.5);
+                                     STDHEIGHT,
+                                     STDHEIGHT,
+                                     STDHEIGHT,
+                                     STDHEIGHT);
 }
